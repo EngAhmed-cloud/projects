@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AL-NOUR // Architectural Legacies & Spatial Monoliths</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-void: #060606;
+            --bg-void-elevated: #0f0f0f;
+            --text-pure: #fcfcfc;
+            --text-editorial: #e5e5e0;
+            --text-muted: #6e6e6a;
+            --accent-gold: #c3a263;
+            --accent-gold-dim: #4a3e25;
+            --accent-light-bleed: rgba(255, 255, 255, 0.04);
+            --font-display: 'Bodoni Moda', serif;
+            --font-body: 'Cormorant Garamond', serif;
+            --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-heavy: cubic-bezier(0.76, 0, 0.24, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-void);
+            color: var(--text-pure);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            scrollbar-width: none;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* --- ATMOSPHERIC LAYERS --- */
+        .grain-canvas {
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .volumetric-beam {
+            position: fixed;
+            top: -25%;
+            left: -25%;
+            width: 150vw;
+            height: 150vw;
+            background: radial-gradient(circle at 50% 50%, rgba(195, 162, 99, 0.08) 0%, rgba(255, 255, 255, 0.01) 40%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+            transform: translate(var(--mx, 0px), var(--my, 0px));
+            mix-blend-mode: screen;
+        }
+
+        /* --- ADVANCED PRELOADER & TELEMETRY --- */
+        .preloader {
+            position: fixed;
+            inset: 0;
+            background-color: #000;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 3rem;
+            animation: dismissLoader 1.4s var(--ease-heavy) 3.5s forwards;
+        }
+
+        .loader-telemetry {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+        }
+
+        .loader-center {
+            align-self: center;
+            text-align: center;
+        }
+
+        .loader-brand {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            letter-spacing: 0.4em;
+            font-weight: 300;
+            text-transform: uppercase;
+            color: var(--text-pure);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: loaderFadeIn 1s var(--ease-luxury) 0.5s forwards;
+        }
+
+        .loader-bar-container {
+            width: 300px;
+            height: 1px;
+            background: var(--accent-gold-dim);
+            margin: 2rem auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .loader-bar-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: var(--accent-gold);
+            animation: fillBar 2.5s cubic-bezier(0.65, 0, 0.35, 1) 0.8s forwards;
+        }
+
+        .loader-counter {
+            font-size: 1.2rem;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+        }
+
+        /* --- NAVIGATION --- */
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 3rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 900;
+        }
+
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            letter-spacing: 0.2em;
+            color: var(--text-pure);
+            text-decoration: none;
+            font-weight: 400;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            transition: color 0.4s var(--ease-luxury);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent-gold);
+            transition: width 0.4s var(--ease-luxury);
+        }
+
+        .nav-link:hover {
+            color: var(--text-pure);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* --- ASYMMETRIC HERO DECONSTRUCTION --- */
+        .hero-section {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            padding: 15rem 4rem 6rem 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-headline-block {
+            grid-column: 1 / 10;
+            align-self: end;
+            z-index: 10;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: calc(3.5rem + 4.5vw);
+            line-height: 0.85;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            opacity: 0;
+            transform: translateY(80px);
+            animation: enterReveal 1.6s var(--ease-luxury) 3.8s forwards;
+        }
+
+        .hero-title em {
+            font-family: var(--font-body);
+            font-style: italic;
+            font-weight: 200;
+            color: var(--accent-gold);
+            display: block;
+            padding-left: 6rem;
+            letter-spacing: 0px;
+        }
+
+        .hero-monolith-wrapper {
+            grid-column: 8 / 13;
+            grid-row: 1;
+            height: 80vh;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            opacity: 0;
+            transform: scale(0.95) translateY(40px);
+            animation: enterReveal 2s var(--ease-luxury) 3.6s forwards;
+        }
+
+        .hero-monolith-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(1) contrast(1.15) brightness(0.5);
+            transition: transform 2s var(--ease-luxury), filter 2s var(--ease-luxury);
+        }
+
+        .hero-monolith-wrapper:hover .hero-monolith-image {
+            transform: scale(1.04);
+            filter: grayscale(0.2) contrast(1.1) brightness(0.6);
+        }
+
+        .hero-telemetry-overlay {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            font-family: var(--font-display);
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            color: var(--text-editorial);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+        }
+
+        /* --- THE MANIFESTO & PATTERN GRID --- */
+        .manifesto-section {
+            padding: 20rem 4rem;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(to bottom, transparent, var(--bg-void-elevated), transparent);
+        }
+
+        .manifesto-meta {
+            grid-column: 2 / 4;
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            border-left: 2px solid var(--accent-gold-dim);
+            padding-left: 1.5rem;
+            height: fit-content;
+        }
+
+        .manifesto-body {
+            grid-column: 5 / 11;
+            font-size: 2.8rem;
+            line-height: 1.4;
+            font-weight: 300;
+            color: var(--text-editorial);
+        }
+
+        .manifesto-body strong {
+            font-family: var(--font-display);
+            font-weight: 400;
+            color: var(--text-pure);
+            font-style: italic;
+        }
+
+        /* --- ARCHITECTURAL EXPEDITIONS (INTERACTIVE ARCHIVE) --- */
+        .archive-section {
+            padding: 6rem 4rem 12rem 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-label {
+            grid-column: 1 / 13;
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--accent-light-bleed);
+            padding-bottom: 2rem;
+            margin-bottom: 8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-counter {
+            color: var(--accent-gold);
+            font-size: 0.9rem;
+        }
+
+        /* Custom Asymmetric Grid Stacking */
+        .archive-matrix {
+            display: flex;
+            flex-direction: column;
+            gap: 24rem;
+        }
+
+        .matrix-item {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            align-items: center;
+            position: relative;
+        }
+
+        .matrix-visual-container {
+            grid-column: 1 / 8;
+            height: 70vh;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.7);
+            background: #000;
+        }
+
+        .matrix-item:nth-child(even) .matrix-visual-container {
+            grid-column: 5 / 13;
+        }
+
+        .matrix-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(1) brightness(0.4) contrast(1.2);
+            transition: all 1.2s var(--ease-luxury);
+        }
+
+        .matrix-item:hover .matrix-img {
+            filter: grayscale(0.1) brightness(0.6) contrast(1.05);
+            transform: scale(1.03);
+        }
+
+        .matrix-info-panel {
+            grid-column: 9 / 13;
+            padding-left: 4rem;
+        }
+
+        .matrix-item:nth-child(even) .matrix-info-panel {
+            grid-column: 1 / 5;
+            grid-row: 1;
+            padding-left: 0;
+            padding-right: 4rem;
+        }
+
+        .matrix-index {
+            font-family: var(--font-display);
+            font-size: 0.9rem;
+            color: var(--accent-gold);
+            letter-spacing: 0.4em;
+            display: block;
+            margin-bottom: 1.5rem;
+        }
+
+        .matrix-title {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 2rem;
+            letter-spacing: -0.01em;
+        }
+
+        .matrix-desc {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        /* --- THE TELEMETRY BLUEPRINT EXPLORER --- */
+        .blueprint-interactive-container {
+            margin-top: 4rem;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            background: rgba(10, 10, 10, 0.4);
+            backdrop-filter: blur(20px);
+            padding: 2.5rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .telemetry-node {
+            border-left: 1px solid var(--accent-gold-dim);
+            padding-left: 1.5rem;
+        }
+
+        .telemetry-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .telemetry-value {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--text-pure);
+        }
+
+        /* --- PRIVATE ACQUISITIONS (THE INTAKE BUREAU) --- */
+        .acquisition-section {
+            padding: 12rem 4rem;
+            background: #090909;
+            border-top: 1px solid var(--accent-light-bleed);
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            position: relative;
+            z-index: 2;
+        }
+
+        .acquisition-header {
+            grid-column: 2 / 5;
+        }
+
+        .acquisition-header h3 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            line-height: 1.1;
+        }
+
+        .acquisition-header p {
+            color: var(--text-muted);
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .acquisition-form-block {
+            grid-column: 6 / 12;
+        }
+
+        .luxury-form {
+            display: flex;
+            flex-direction: column;
+            gap: 4.5rem;
+        }
+
+        .field-group {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .luxury-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 0;
+            color: var(--text-pure);
+            font-family: var(--font-body);
+            font-size: 1.5rem;
+            outline: none;
+            transition: border-color 0.4s var(--ease-luxury);
+        }
+
+        .luxury-input:focus {
+            border-color: var(--accent-gold);
+        }
+
+        .luxury-label {
+            position: absolute;
+            top: 1rem;
+            left: 0;
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            pointer-events: none;
+            transition: all 0.4s var(--ease-luxury);
+        }
+
+        .luxury-input:focus ~ .luxury-label,
+        .luxury-input:not(:placeholder-shown) ~ .luxury-label {
+            top: -1.5rem;
+            font-size: 0.75rem;
+            color: var(--accent-gold);
+        }
+
+        .submit-btn-wrapper {
+            align-self: flex-start;
+            position: relative;
+        }
+
+        .submit-btn {
+            background: transparent;
+            border: 1px solid var(--accent-gold);
+            color: var(--text-pure);
+            font-family: var(--font-display);
+            padding: 1.5rem 4rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            cursor: pointer;
+            overflow: hidden;
+            position: relative;
+            transition: color 0.4s var(--ease-luxury);
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-gold);
+            z-index: -1;
+            transition: left 0.4s var(--ease-luxury);
+        }
+
+        .submit-btn:hover {
+            color: #000;
+        }
+
+        .submit-btn:hover::before {
+            left: 0;
+        }
+
+        /* --- THE COMPREHENSIVE FOOTER MONOGRAPH --- */
+        .monograph-footer {
+            background-color: #030303;
+            padding: 10rem 4rem 4rem 4rem;
+            border-top: 1px solid rgba(255,255,255,0.02);
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-crest {
+            grid-column: 1 / 6;
+        }
+
+        .footer-crest h2 {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .footer-directory {
+            grid-column: 8 / 13;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+        }
+
+        .directory-column h4 {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            letter-spacing: 0.20em;
+            text-transform: uppercase;
+            color: var(--text-pure);
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--accent-gold-dim);
+            padding-bottom: 0.5rem;
+        }
+
+        .directory-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .directory-list a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.05rem;
+            transition: color 0.3s ease;
+        }
+
+        .directory-list a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-base {
+            grid-column: 1 / 13;
+            margin-top: 10rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            letter-spacing: 0.15em;
+        }
+
+        /* --- ANIMATIONS KEYS --- */
+        @keyframes loaderFadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fillBar {
+            to { width: 100%; }
+        }
+        @keyframes dismissLoader {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100%); visibility: hidden; }
+        }
+        @keyframes enterReveal {
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* RESPONSIVE ARCHITECTURE */
+        @media (max-width: 1024px) {
+            .hero-section { grid-template-columns: 1fr; padding-top: 10rem; }
+            .hero-headline-block { grid-column: 1; order: 2; }
+            .hero-monolith-wrapper { grid-column: 1; height: 50vh; order: 1; margin-bottom: 4rem; }
+            .manifesto-section { grid-template-columns: 1fr; padding: 10rem 2rem; }
+            .manifesto-body { grid-column: 1; font-size: 1.8rem; margin-top: 2rem; }
+            .matrix-item, .matrix-item:nth-child(even) .matrix-visual-container { grid-template-columns: 1fr; }
+            .matrix-visual-container, .matrix-info-panel { grid-column: 1 !important; padding: 2rem 0; }
+            .blueprint-interactive-container { grid-template-columns: 1fr; }
+            .acquisition-section { grid-template-columns: 1fr; gap: 4rem; }
+            .acquisition-header, .acquisition-form-block { grid-column: 1; }
+            .nav-menu { display: none; }
+            .monograph-footer { grid-template-columns: 1fr; gap: 4rem; }
+            .footer-directory { grid-column: 1; grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grain-canvas"></div>
+    <div class="volumetric-beam" id="volumetricLight"></div>
+
+    <div class="preloader">
+        <div class="loader-telemetry">
+            <span>SYS.LOC: 30.0444° N, 31.2357° E</span>
+            <span>ELEVATION: AUTHENTIC ARCHITECTURE</span>
+        </div>
+        <div class="loader-center">
+            <div class="loader-brand">Al-Nour</div>
+            <div class="loader-bar-container">
+                <div class="loader-bar-fill"></div>
+            </div>
+            <div class="loader-counter" id="loadPercentage">00%</div>
+        </div>
+        <div class="loader-telemetry">
+            <span>CHRONO: 2026 // EDITION</span>
+            <span>LIGHT COMPUTE: ACTIVE</span>
+        </div>
+    </div>
+
+    <nav class="nav-bar">
+        <a href="#" class="nav-logo">AL-NOUR</a>
+        <ul class="nav-menu">
+            <li><a href="#philosophy" class="nav-link">Philosophy</a></li>
+            <li><a href="#monoliths" class="nav-link">The Monoliths</a></li>
+            <li><a href="#bureau" class="nav-link">Private Bureau</a></li>
+        </ul>
+    </nav>
+
+    <main>
+
+        <section class="hero-section">
+            <div class="hero-headline-block">
+                <h1 class="hero-title">
+                    We Frame The Sun.<br>
+                    em>You Inherit the Earth.</em>
+                </h1>
+            </div>
+            <div class="hero-monolith-wrapper">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=90" class="hero-monolith-image" alt="Al-Nour Structural Monument">
+                <div class="hero-telemetry-overlay">MONOLITH NO. IV // CAIRO ARCHIVES</div>
+            </div>
+        </section>
+
+        <section class="manifesto-section" id="philosophy">
+            <div class="manifesto-meta">
+                Deep Luminescence Telemetry
+            </div>
+            <div class="manifesto-body">
+                We refuse to build conventional shelters. We craft <strong>spatial testaments</strong> where light acts as the primary layout medium. By matching heavy raw mass with calculated light alignment, Al-Nour produces environments that elevate the soul and assert economic dominance.
+            </div>
+        </section>
+
+        <section class="archive-section" id="monoliths">
+            <div class="section-label">
+                <span>The Permanent Collection</span>
+                <span class="section-counter">[ Available Monographs : 02 ]</span>
+            </div>
+
+            <div class="archive-matrix">
+
+                <div class="matrix-item">
+                    <div class="matrix-visual-container">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=90" class="matrix-img" alt="The Obsidian Rift">
+                    </div>
+                    <div class="matrix-info-panel">
+                        <span class="matrix-index">01 / ARCHIVE // HIGH-CONTRAST</span>
+                        <h3 class="matrix-title">The Obsidian Rift</h3>
+                        <p class="matrix-desc">Carved deeply into basalt bedrock formations, this compound manipulates low-angle winter light vectors into dramatic geometric statements across absolute black marble planes.</p>
+                        
+                        <div class="blueprint-interactive-container">
+                            <div class="telemetry-node">
+                                <div class="telemetry-label">Footprint</div>
+                                <div class="telemetry-value">3,400 m²</div>
+                            </div>
+                            <div class="telemetry-node">
+                                <div class="telemetry-label">Lux Ceiling</div>
+                                <div class="telemetry-value">12,000 lm</div>
+                            </div>
+                            <div class="telemetry-node">
+                                <div class="telemetry-label">Orientation</div>
+                                <div class="telemetry-value">270° W</div>
+                            </div>
+                            <div class="telemetry-node">
+                                <div class="telemetry-label">Status</div>
+                                <div class="telemetry-value" style="color: var(--accent-gold);">Vetted</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="matrix-item">
+                    <div class="matrix-visual-container">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1400&q=90" class="matrix-img" alt="The Helios Aperture">
+                    </div>
+                    <div class="matrix-info-panel">
+                        <span class="matrix-index">02 / ARCHIVE // CANOPY</span>
+                        <h3 class="matrix-title">The Helios Canopy</h3>
+                        <p class="matrix-desc">A hyper-cantilevered structural slab balancing above a pristine private valley loop, utilizing custom unpolished travertine columns that trap late-afternoon sunbeams.</p>
+                        
+                        <div class="blueprint-interactive-container">
+                            <div class="telemetry-node">
+                                <div class="telemetry-label">Footprint</div>
+                                <div class="telemetry-value">5,150 m²</div>
+                            </div>
+                            <div class="telemetry-node">
+                                <div class="telemetry-label">Lux Ceiling</div>
+                                <div class="telemetry-value">45,000 lm</div>
+                            </div>
+                            <div class="telemetry-node">
+                                <div class="telemetry-label">Orientation</div>
+                                <div class="telemetry-value">180° S</div>
+                            </div>
+                            <div class="telemetry-node">
+                                <div class="telemetry-label">Status</div>
+                                <div class="telemetry-value" style="color: var(--accent-gold);">Reserved</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="acquisition-section" id="bureau">
+            <div class="acquisition-header">
+                <h3>Initiate Secret Acquisition</h3>
+                <p>Entry into the Al-Nour ledger is restricted to principal buyers only. Submit your coordinates for tailored introductory portfolios.</p>
+            </div>
+            <div class="acquisition-form-block">
+                <form class="luxury-form" onsubmit="event.preventDefault(); alert('Telemetry transmitted securely. Our Private Attache will contact you shortly.');">
+                    <div class="field-group">
+                        <input type="text" id="buyerName" class="luxury-input" placeholder=" " required>
+                        <label for="buyerName" class="luxury-label">Principal Name / Entity</label>
+                    </div>
+                    <div class="field-group">
+                        <input type="email" id="buyerEmail" class="luxury-input" placeholder=" " required>
+                        <label for="buyerEmail" class="luxury-label">Secure Signal Channel</label>
+                    </div>
+                    <div class="field-group">
+                        <input type="text" id="capitalScope" class="luxury-input" placeholder=" " required>
+                        <label for="capitalScope" class="luxury-label">Target Spatial Allocation Scope</label>
+                    </div>
+                    <div class="submit-btn-wrapper">
+                        <button type="submit" class="submit-btn">Transmit Telemetry</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="monograph-footer">
+        <div class="footer-crest">
+            <h2>AL-NOUR</h2>
+            <p style="color: var(--text-muted); line-height: 1.8; max-width: 400px; font-size: 1.1rem;">
+                Bespoke Real Estate Monuments for Generational Legacies. Architecture that captures light.
+            </p>
+        </div>
+        <div class="footer-directory">
+            <div class="directory-column">
+                <h4>Sovereign Bureaus</h4>
+                <ul class="directory-list">
+                    <li><a href="#">Zurich Vault</a></li>
+                    <li><a href="#">Cairo Monolith</a></li>
+                    <li><a href="#">Dubai Outpost</a></li>
+                </ul>
+            </div>
+            <div class="directory-column">
+                <h4>Monograph Intel</h4>
+                <ul class="directory-list">
+                    <li><a href="#">The Light Almanac</a></li>
+                    <li><a href="#">Structural Blueprints</a></li>
+                    <li><a href="#">Sovereign Discretion</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-base">
+            <span>&copy; 2026 AL-NOUR INT. ARCHITECTURAL TRUST.</span>
+            <span>THE LIGHT WILL PREVAIL.</span>
+        </div>
+    </footer>
+
+    <script>
+        // Real-time Preloader Counter Simulation
+        let count = 0;
+        const counterElement = document.getElementById('loadPercentage');
+        const countInterval = setInterval(() => {
+            count += Math.floor(Math.random() * 8) + 2;
+            if (count >= 100) {
+                count = 100;
+                clearInterval(countInterval);
+            }
+            counterElement.innerText = (count < 10 ? '0' : '') + count + '%';
+        }, 60);
+
+        // Volumetric Dynamic Light Tracking Control
+        const lightBeam = document.getElementById('volumetricLight');
+        document.addEventListener('mousemove', (event) => {
+            const shiftX = event.clientX - (window.innerWidth / 2);
+            const shiftY = event.clientY - (window.innerHeight / 2);
+            
+            // Apply fluid lagging motion calculations via modern performance transforms
+            lightBeam.style.setProperty('--mx', `${shiftX * 0.35}px`);
+            lightBeam.style.setProperty('--my', `${shiftY * 0.35}px`);
+        });
+    </script>
+</body>
+</html>

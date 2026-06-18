@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AL-NOUR // The Phenomenological Supremacy of Light</title>
+    
+    <!-- Google Fonts Integration -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-absolute: #030303;
+            --bg-surface: #0a0a0a;
+            --bg-surface-elevated: #121212;
+            --text-primary: #fcfcf9;
+            --text-secondary: #d1d1ca;
+            --text-muted: #5e5e5a;
+            --accent-lux: #cca25e;
+            --accent-lux-muted: #3a3020;
+            --border-fine: rgba(255, 255, 255, 0.04);
+            --border-active: rgba(204, 162, 94, 0.3);
+            
+            --font-serif-display: 'Bodoni Moda', serif;
+            --font-serif-editorial: 'Cormorant Garamond', serif;
+            
+            --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-monolithic: cubic-bezier(0.85, 0, 0.15, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            outline: none;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-absolute);
+            color: var(--text-primary);
+            font-family: var(--font-serif-editorial);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            letter-spacing: 0.02em;
+        }
+
+        /* --- FINE GRAIN & ATMOSPHERIC EMISSION --- */
+        .grain-texture {
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        .volumetric-aperture {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200vw;
+            height: 200vw;
+            background: radial-gradient(circle at 50% 50%, rgba(204, 162, 94, 0.09) 0%, rgba(255, 255, 255, 0.01) 35%, transparent 70%);
+            pointer-events: none;
+            z-index: 1;
+            transform: translate(var(--lux-x, 0px), var(--lux-y, 0px));
+            mix-blend-mode: screen;
+            transition: transform 0.5s cubic-bezier(0.1, 0.8, 0.2, 1);
+        }
+
+        /* --- ADVANCED QUANTUM PRELOADER --- */
+        .monograph-preloader {
+            position: fixed;
+            inset: 0;
+            background-color: var(--bg-absolute);
+            z-index: 20000;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 4rem;
+            animation: dismissPreloader 1.6s var(--ease-monolithic) 4.2s forwards;
+        }
+
+        .preloader-header, .preloader-footer {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-serif-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.4em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .preloader-center-mass {
+            align-self: center;
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .preloader-brand {
+            font-family: var(--font-serif-display);
+            font-size: 5rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            font-weight: 300;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: textRevealUp 1.4s var(--ease-cinematic) 0.5s forwards;
+        }
+
+        .preloader-subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--accent-lux);
+            margin-top: 1rem;
+            opacity: 0;
+            animation: textRevealUp 1.4s var(--ease-cinematic) 1.2s forwards;
+        }
+
+        .preloader-bar-axis {
+            width: 100%;
+            height: 1px;
+            background: var(--accent-lux-muted);
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .preloader-bar-quantum {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: var(--accent-lux);
+            animation: fulfillQuantum 3s cubic-bezier(0.76, 0, 0.24, 1) 1s forwards;
+        }
+
+        .preloader-terminal-log {
+            font-family: monospace;
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            height: 20px;
+            overflow: hidden;
+        }
+
+        /* --- THE NAVIGATION FRAME --- */
+        .structural-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 3.5rem 5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 15000;
+            mix-blend-mode: difference;
+        }
+
+        .nav-identity {
+            font-family: var(--font-serif-display);
+            font-size: 2.2rem;
+            letter-spacing: 0.25em;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 300;
+        }
+
+        .nav-nexus {
+            display: flex;
+            gap: 6rem;
+            list-style: none;
+        }
+
+        .nav-node-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            transition: color 0.4s var(--ease-cinematic);
+            position: relative;
+            padding-bottom: 0.6rem;
+        }
+
+        .nav-node-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--accent-lux);
+            transition: width 0.5s var(--ease-cinematic);
+        }
+
+        .nav-node-link:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-node-link:hover::after {
+            width: 100%;
+        }
+
+        /* --- SECTION I: ASYMMETRIC MONOLITHIC HERO --- */
+        .hero-chamber {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            padding: 18rem 5rem 8rem 5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-typography-core {
+            grid-column: 1 / 10;
+            align-self: end;
+            z-index: 5;
+        }
+
+        .hero-monograph-title {
+            font-family: var(--font-serif-display);
+            font-size: calc(4rem + 5vw);
+            line-height: 0.85;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: -0.03em;
+            opacity: 0;
+            transform: translateY(100px);
+            animation: textRevealUp 1.8s var(--ease-cinematic) 4.5s forwards;
+        }
+
+        .hero-monograph-title span {
+            font-family: var(--font-serif-editorial);
+            font-style: italic;
+            font-weight: 200;
+            color: var(--accent-lux);
+            display: block;
+            padding-left: 8rem;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-monolithic-viewport {
+            grid-column: 8 / 13;
+            grid-row: 1;
+            height: 85vh;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-fine);
+            opacity: 0;
+            transform: scale(0.93) translateY(50px);
+            animation: viewportReveal 2.2s var(--ease-cinematic) 4.3s forwards;
+        }
+
+        .hero-viewport-asset {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(1) contrast(1.2) brightness(0.4);
+            transition: transform 2.5s var(--ease-cinematic), filter 2.5s var(--ease-cinematic);
+        }
+
+        .hero-monolithic-viewport:hover .hero-viewport-asset {
+            transform: scale(1.06);
+            filter: grayscale(0.1) contrast(1.1) brightness(0.55);
+        }
+
+        .hero-telemetry-strip {
+            position: absolute;
+            bottom: 3rem;
+            left: 3rem;
+            font-family: var(--font-serif-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            color: var(--text-secondary);
+            writing-mode: vertical-lr;
+            text-transform: uppercase;
+        }
+
+        /* --- SECTION II: THE MONOGRAPH PHENOMENON --- */
+        .phenomenon-chamber {
+            padding: 24rem 5rem;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(to bottom, transparent, var(--bg-surface), transparent);
+        }
+
+        .phenomenon-axis-label {
+            grid-column: 2 / 4;
+            font-family: var(--font-serif-display);
+            font-size: 0.85rem;
+            letter-spacing: 0.45em;
+            text-transform: uppercase;
+            color: var(--accent-lux);
+            border-left: 1px solid var(--accent-lux-muted);
+            padding-left: 2rem;
+            height: fit-content;
+        }
+
+        .phenomenon-prose-block {
+            grid-column: 5 / 11;
+            font-size: 3.2rem;
+            line-height: 1.35;
+            font-weight: 300;
+            color: var(--text-secondary);
+        }
+
+        .phenomenon-prose-block strong {
+            font-family: var(--font-serif-display);
+            font-weight: 400;
+            color: var(--text-primary);
+            font-style: italic;
+        }
+
+        /* --- SECTION III: THE ARCHITECTURAL MATRIX (INTERACTIVE) --- */
+        .matrix-chamber {
+            padding: 8rem 5rem 16rem 5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .matrix-header-node {
+            font-family: var(--font-serif-display);
+            font-size: 1.4rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border-fine);
+            padding-bottom: 2.5rem;
+            margin-bottom: 12rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .matrix-stream {
+            display: flex;
+            flex-direction: column;
+            gap: 28rem;
+        }
+
+        .matrix-monolith-row {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            align-items: center;
+            position: relative;
+        }
+
+        .matrix-canvas-frame {
+            grid-column: 1 / 8;
+            height: 75vh;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 60px 120px -30px rgba(0,0,0,0.8);
+            border: 1px solid var(--border-fine);
+        }
+
+        .matrix-monolith-row:nth-child(even) .matrix-canvas-frame {
+            grid-column: 5 / 13;
+        }
+
+        .matrix-primary-asset {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(1) brightness(0.35) contrast(1.25);
+            transition: filter 1.4s var(--ease-cinematic), transform 1.4s var(--ease-cinematic);
+        }
+
+        /* Photometric Analysis Blueprint View Class Override */
+        .matrix-canvas-frame.blueprint-mode .matrix-primary-asset {
+            filter: invert(1) hue-rotate(180deg) brightness(0.8) contrast(1.5);
+        }
+
+        .matrix-monolith-row:hover .matrix-primary-asset {
+            filter: grayscale(0.1) brightness(0.5) contrast(1.1);
+            transform: scale(1.02);
+        }
+
+        .matrix-canvas-frame.blueprint-mode:hover .matrix-primary-asset {
+            filter: invert(1) hue-rotate(180deg) brightness(0.9) contrast(1.6);
+        }
+
+        .matrix-data-dossier {
+            grid-column: 9 / 13;
+            padding-left: 5rem;
+        }
+
+        .matrix-monolith-row:nth-child(even) .matrix-data-dossier {
+            grid-column: 1 / 5;
+            grid-row: 1;
+            padding-left: 0;
+            padding-right: 5rem;
+        }
+
+        .dossier-index {
+            font-family: var(--font-serif-display);
+            font-size: 0.9rem;
+            color: var(--accent-lux);
+            letter-spacing: 0.5em;
+            display: block;
+            margin-bottom: 2rem;
+        }
+
+        .dossier-nomenclature {
+            font-family: var(--font-serif-display);
+            font-size: 4rem;
+            text-transform: uppercase;
+            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 2.5rem;
+            letter-spacing: -0.01em;
+        }
+
+        .dossier-narrative {
+            color: var(--text-muted);
+            font-size: 1.3rem;
+            line-height: 1.75;
+            margin-bottom: 4rem;
+            font-weight: 300;
+        }
+
+        /* INTERACTIVE METRIC COMPONENT */
+        .photometric-telemetry-box {
+            margin-top: 3rem;
+            border: 1px solid var(--border-fine);
+            background: rgba(8, 8, 8, 0.5);
+            backdrop-filter: blur(25px);
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            position: relative;
+        }
+
+        .metric-node {
+            border-left: 1px solid var(--accent-lux-muted);
+            padding-left: 1.5rem;
+        }
+
+        .metric-header {
+            font-size: 0.8rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.6rem;
+        }
+
+        .metric-readout {
+            font-family: var(--font-serif-display);
+            font-size: 1.4rem;
+            color: var(--text-secondary);
+        }
+
+        .blueprint-toggle-trigger {
+            grid-column: 1 / 3;
+            background: transparent;
+            border: 1px solid var(--accent-lux-muted);
+            color: var(--accent-lux);
+            font-family: var(--font-serif-display);
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.4s var(--ease-cinematic);
+        }
+
+        .blueprint-toggle-trigger:hover {
+            border-color: var(--accent-lux);
+            background: rgba(204, 162, 94, 0.05);
+            color: var(--text-primary);
+        }
+
+        /* --- SECTION IV: THE GLOBAL CELESTIAL ALIGNMENT MATRIX --- */
+        .celestial-matrix-chamber {
+            padding: 12rem 5rem;
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-fine);
+            border-bottom: 1px solid var(--border-fine);
+        }
+
+        .celestial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: var(--border-fine);
+        }
+
+        .celestial-cell {
+            background: var(--bg-absolute);
+            padding: 4rem;
+            transition: background 0.6s var(--ease-cinematic);
+        }
+
+        .celestial-cell:hover {
+            background: #0d0d0c;
+        }
+
+        .celestial-coordinates {
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: var(--accent-lux);
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .celestial-location {
+            font-family: var(--font-serif-display);
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .celestial-vector-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* --- SECTION V: CRYPTOGRAPHIC PRIVACY ALLOCATION --- */
+        .ledger-chamber {
+            padding: 16rem 5rem;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            position: relative;
+            z-index: 2;
+        }
+
+        .ledger-profile {
+            grid-column: 2 / 5;
+        }
+
+        .ledger-profile h3 {
+            font-family: var(--font-serif-display);
+            font-size: 3rem;
+            text-transform: uppercase;
+            font-weight: 300;
+            letter-spacing: 0.02em;
+            line-height: 1.1;
+        }
+
+        .ledger-profile p {
+            color: var(--text-muted);
+            margin-top: 2.5rem;
+            font-size: 1.2rem;
+            line-height: 1.7;
+        }
+
+        .ledger-input-architecture {
+            grid-column: 6 / 12;
+        }
+
+        .monograph-form {
+            display: flex;
+            flex-direction: column;
+            gap: 5.5rem;
+        }
+
+        .input-monolith-node {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .monograph-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1.5rem 0;
+            color: var(--text-primary);
+            font-family: var(--font-serif-editorial);
+            font-size: 1.8rem;
+            outline: none;
+            transition: border-color 0.5s var(--ease-cinematic);
+        }
+
+        .monograph-input:focus {
+            border-color: var(--accent-lux);
+        }
+
+        .monograph-label {
+            position: absolute;
+            top: 1.5rem;
+            left: 0;
+            font-family: var(--font-serif-display);
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            pointer-events: none;
+            transition: all 0.5s var(--ease-cinematic);
+        }
+
+        .monograph-input:focus ~ .monograph-label,
+        .monograph-input:not(:placeholder-shown) ~ .monograph-label {
+            top: -2rem;
+            font-size: 0.75rem;
+            color: var(--accent-lux);
+        }
+
+        .transmission-trigger-boundary {
+            align-self: flex-start;
+        }
+
+        .transmission-btn {
+            background: transparent;
+            border: 1px solid var(--accent-lux);
+            color: var(--text-primary);
+            font-family: var(--font-serif-display);
+            padding: 2rem 5rem;
+            font-size: 1rem;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.5s var(--ease-cinematic);
+        }
+
+        .transmission-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-lux);
+            z-index: -1;
+            transition: left 0.5s var(--ease-cinematic);
+        }
+
+        .transmission-btn:hover {
+            color: var(--bg-absolute);
+        }
+
+        .transmission-btn:hover::before {
+            left: 0;
+        }
+
+        /* --- THE COMPREHENSIVE REAR MONOGRAPH FOOTER --- */
+        .monograph-footer {
+            background-color: #020202;
+            padding: 12rem 5rem 5rem 5rem;
+            border-top: 1px solid var(--border-fine);
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-monolith-identity {
+            grid-column: 1 / 6;
+        }
+
+        .footer-monolith-identity h2 {
+            font-family: var(--font-serif-display);
+            font-size: 4.5rem;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+        }
+
+        .footer-monolith-identity p {
+            color: var(--text-muted);
+            line-height: 1.9;
+            max-width: 440px;
+            font-size: 1.2rem;
+        }
+
+        .footer-directory-map {
+            grid-column: 8 / 13;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5rem;
+        }
+
+        .directory-map-column h4 {
+            font-family: var(--font-serif-display);
+            font-size: 0.9rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid var(--accent-lux-muted);
+            padding-bottom: 0.75rem;
+        }
+
+        .directory-map-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .directory-map-list a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.15rem;
+            transition: color 0.3s ease;
+        }
+
+        .directory-map-list a:hover {
+            color: var(--accent-lux);
+        }
+
+        .footer-monograph-base {
+            grid-column: 1 / 13;
+            margin-top: 12rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.01);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+        }
+
+        /* --- THEORETICAL ANIMATIONS TRANSFORMS --- */
+        @keyframes textRevealUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fulfillQuantum {
+            to { width: 100%; }
+        }
+        @keyframes dismissPreloader {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100%); visibility: hidden; pointer-events: none; }
+        }
+        @keyframes viewportReveal {
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* ADAPTIVE SYSTEM GRAPHICS (RESPONSIVE) */
+        @media (max-width: 1200px) {
+            .hero-chamber { grid-template-columns: 1fr; padding-top: 12rem; padding-left: 2rem; padding-right: 2rem; }
+            .hero-typography-core { grid-column: 1; order: 2; }
+            .hero-monolithic-viewport { grid-column: 1; height: 55vh; order: 1; margin-bottom: 5rem; }
+            .phenomenon-chamber { grid-template-columns: 1fr; padding: 12rem 2rem; }
+            .phenomenon-prose-block { grid-column: 1; font-size: 2rem; margin-top: 3rem; }
+            .matrix-monolith-row, .matrix-monolith-row:nth-child(even) .matrix-canvas-frame { grid-template-columns: 1fr; }
+            .matrix-canvas-frame, .matrix-data-dossier { grid-column: 1 !important; padding: 2rem 0; }
+            .celestial-grid { grid-template-columns: 1fr; }
+            .ledger-chamber { grid-template-columns: 1fr; gap: 5rem; padding: 8rem 2rem; }
+            .ledger-profile, .ledger-input-architecture { grid-column: 1; }
+            .nav-nexus { display: none; }
+            .monograph-footer { grid-template-columns: 1fr; gap: 5rem; padding: 6rem 2rem; }
+            .footer-directory-map { grid-column: 1; grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Atmospheric Overlay Architecture -->
+    <div class="grain-texture"></div>
+    <div class="volumetric-aperture" id="apertureLightEngine"></div>
+
+    <!-- Quantum Telemetry Preloader -->
+    <div class="monograph-preloader">
+        <div class="preloader-header">
+            <span>PHOTOMETRIC DATA DISPATCH</span>
+            <span>SYSTEM OVERRIDE // AL-NOUR</span>
+        </div>
+        <div class="preloader-center-mass">
+            <div class="preloader-brand">Al-Nour</div>
+            <div class="preloader-subtitle">The Geometry of Absolute Manifestation</div>
+            <div class="preloader-bar-axis">
+                <div class="preloader-bar-quantum"></div>
+            </div>
+            <div class="preloader-terminal-log" id="terminalLogEngine">Initializing optical alignment matrices...</div>
+        </div>
+        <div class="preloader-footer">
+            <span>ESTABLISHED 2026</span>
+            <span>INTELLECTUAL RIGHTS RESERVED</span>
+        </div>
+    </div>
+
+    <!-- Structural Navigational Core -->
+    <nav class="structural-nav">
+        <a href="#" class="nav-identity">AL-NOUR</a>
+        <ul class="nav-nexus">
+            <li><a href="#phenomenon" class="nav-node-link">The Phenomenon</a></li>
+            <li><a href="#matrix" class="nav-node-link">Bespoke Matrix</a></li>
+            <li><a href="#celestial" class="nav-node-link">Celestial Vectors</a></li>
+            <li><a href="#ledger" class="nav-node-link">Private Bureau</a></li>
+        </ul>
+    </nav>
+
+    <!-- Content Manifest -->
+    <main>
+
+        <!-- Section I: Hero -->
+        <section class="hero-chamber">
+            <div class="hero-typography-core">
+                <h1 class="hero-chamber-title hero-monograph-title">
+                    We Do Not Build Space.<br>
+                    <span>We Intercept Eternity.</span>
+                </h1>
+            </div>
+            <div class="hero-monolithic-viewport">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=95" class="hero-viewport-asset" alt="Al-Nour Absolute Architecture Monograph">
+                <div class="hero-telemetry-strip">MONOLITH ALPHA // AXIS SELECTION</div>
+            </div>
+        </section>
+
+        <!-- Section II: Manifesto -->
+        <section class="phenomenon-chamber" id="phenomenon">
+            <div class="phenomenon-axis-label">
+                Phenomenological Stance
+            </div>
+            <p class="phenomenon-prose-block">
+                Conventional real estate trades in physical commodity and pedestrian metrics. Al-Nour operates within the <strong>metaphysical parameters of space</strong>. Our structures are deliberate incisions into nature, precisely measured to organize daylight, cast unyielding shadows, and assert structural and social permanence.
+            </p>
+        </section>
+
+        <!-- Section III: Asymmetric Architectural Matrix -->
+        <section class="matrix-chamber" id="matrix">
+            <div class="matrix-header-node">
+                <span>The Permanent Ledger Portfolio</span>
+                <span style="color: var(--text-muted); font-size: 0.9rem;">[ Verified Structural Assets: 02 ]</span>
+            </div>
+
+            <div class="matrix-stream">
+
+                <!-- Asset Monolith 01 -->
+                <div class="matrix-monolith-row">
+                    <div class="matrix-canvas-frame" id="frame-01">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=95" class="matrix-primary-asset" alt="The Void of Obsidian Masterwork">
+                    </div>
+                    <div class="matrix-data-dossier">
+                        <span class="dossier-index">MONOLITH NO. 01 // SUBTERRANEAN DENSITY</span>
+                        <h3 class="dossier-nomenclature">The Obsidian Rift</h3>
+                        <p class="dossier-narrative">Carved strictly from crystalline basalt geologic formations. This private fortress captures the winter solstice trajectory, redirecting absolute rays across polished monolithic floors.</p>
+                        
+                        <div class="photometric-telemetry-box">
+                            <div class="metric-node">
+                                <div class="metric-header">Spatial Footprint</div>
+                                <div class="metric-readout">4,250 m²</div>
+                            </div>
+                            <div class="metric-node">
+                                <div class="metric-header">Peak Lux Capture</div>
+                                <div class="metric-readout">18,500 lm</div>
+                            </div>
+                            <button class="blueprint-toggle-trigger" onclick="toggleBlueprint('frame-01')">Toggle Photometric Grid</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Asset Monolith 02 -->
+                <div class="matrix-monolith-row">
+                    <div class="matrix-canvas-frame" id="frame-02">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=95" class="matrix-primary-asset" alt="The Travertine Horizon Canopy">
+                    </div>
+                    <div class="matrix-data-dossier">
+                        <span class="dossier-index">MONOLITH NO. 02 // THERMAL REFRACTION</span>
+                        <h3 class="dossier-nomenclature">Travertine Horizon</h3>
+                        <p class="dossier-narrative">Suspended weightlessly over a raw private canyon. Features double-cantilever structural masonry slabs that process harsh blinding daylight into a serene, meditative interior atmosphere.</p>
+                        
+                        <div class="photometric-telemetry-box">
+                            <div class="metric-node">
+                                <div class="metric-header">Spatial Footprint</div>
+                                <div class="metric-readout">6,120 m²</div>
+                            </div>
+                            <div class="metric-node">
+                                <div class="metric-header">Peak Lux Capture</div>
+                                <div class="metric-readout">54,000 lm</div>
+                            </div>
+                            <button class="blueprint-toggle-trigger" onclick="toggleBlueprint('frame-02')">Toggle Photometric Grid</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section IV: Celestial Alignment Matrix -->
+        <section class="celestial-matrix-chamber" id="celestial">
+            <div style="font-family: var(--font-serif-display); font-size: 1.2rem; letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 5rem;">Celestial Vector Alignments</div>
+            <div class="celestial-grid">
+                <div class="celestial-cell">
+                    <span class="celestial-coordinates">LAT. 30.04° N // LONG. 31.23° E</span>
+                    <h5 class="celestial-location">Nile Zenith Axis</h5>
+                    <p class="celestial-vector-desc">Calculated alignment intercepting high-noon solar maximum paths along deep desert meridians.</p>
+                </div>
+                <div class="celestial-cell">
+                    <span class="celestial-coordinates">LAT. 47.37° N // LONG. 8.54° E</span>
+                    <h5 class="celestial-location">Alpine Rift Horizon</h5>
+                    <p class="celestial-vector-desc">Configured for dramatic low-angle ambient mountain diffusion patterns and dramatic microclimate adjustments.</p>
+                </div>
+                <div class="celestial-cell">
+                    <span class="celestial-coordinates">LAT. 25.20° N // LONG. 55.27° E</span>
+                    <h5 class="celestial-location">Hyperion Canopy Base</h5>
+                    <p class="celestial-vector-desc">Bespoke dynamic roof systems optimizing massive exposure to high-intensity equatorial light cycles.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section V: Cryptographic Allocation Form -->
+        <section class="ledger-chamber" id="ledger">
+            <div class="ledger-profile">
+                <h3>Acquisition Telemetry Protocol</h3>
+                <p>Admission into the Al-Nour portfolio registry requires structural clearing and principal confirmation. Transmit your criteria to our confidential attaché.</p>
+            </div>
+            <div class="ledger-input-architecture">
+                <form class="monograph-form" onsubmit="event.preventDefault(); alert('Telemetry loop closed. Encryption confirmed.');">
+                    <div class="input-monolith-node">
+                        <input type="text" id="principalIdentity" class="monograph-input" placeholder=" " required>
+                        <label for="principalIdentity" class="monograph-label">Principal Identity or Sovereign Institution</label>
+                    </div>
+                    <div class="input-monolith-node">
+                        <input type="email" id="secureTerminal" class="monograph-input" placeholder=" " required>
+                        <label for="secureTerminal" class="monograph-label">Encrypted Communication Endpoint</label>
+                    </div>
+                    <div class="input-monolith-node">
+                        <input type="text" id="massTarget" class="monograph-input" placeholder=" " required>
+                        <label for="massTarget" class="monograph-label">Target Spatial Allocation Requirement (m³ / m²)</label>
+                    </div>
+                    <div class="transmission-trigger-boundary">
+                        <button type="submit" class="transmission-btn">Commit to Ledger</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Master Corporate Monograph Footer -->
+    <footer class="monograph-footer">
+        <div class="footer-monolith-identity">
+            <h2>AL-NOUR</h2>
+            <p>Bespoke structural testaments for sovereign individuals who acquire legacies, not addresses.</p>
+        </div>
+        <div class="footer-directory-map">
+            <div class="directory-map-column">
+                <h4>Private Bureaus</h4>
+                <ul class="directory-map-list">
+                    <li><a href="#">Zurich Registry</a></li>
+                    <li><a href="#">Cairo Monolith</a></li>
+                    <li><a href="#">Dubai Outpost</a></li>
+                </ul>
+            </div>
+            <div class="directory-map-column">
+                <h4>Intel Monographs</h4>
+                <ul class="directory-map-list">
+                    <li><a href="#">Photometric Almanacs</a></li>
+                    <li><a href="#">Structural Blueprints</a></li>
+                    <li><a href="#">Discretion Declarations</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-monograph-base">
+            <span>&copy; 2026 AL-NOUR ARCHITECTURAL SOVEREIGNTY.</span>
+            <span>THE LUX WILL MANIFEST.</span>
+        </div>
+    </footer>
+
+    <!-- Interactive Execution Scripting Engine -->
+    <script>
+        // High-end Preloader Custom Multi-Phase Log Simulation
+        const logs = [
+            "Initializing optical alignment matrices...",
+            "Computing localized lux-gradient curves...",
+            "Validating architectural vector coordinate logs...",
+            "Calibrating obsidian and travertine light filters...",
+            "Securing private ledger node encryption...",
+            "System alignment nominal. Welcome to Al-Nour."
+        ];
+        
+        let currentLogIndex = 0;
+        const logElement = document.getElementById('terminalLogEngine');
+        
+        const logRotationInterval = setInterval(() => {
+            if (currentLogIndex < logs.length) {
+                logElement.innerText = logs[currentLogIndex];
+                currentLogIndex++;
+            } else {
+                clearInterval(logRotationInterval);
+            }
+        }, 600);
+
+        // Volumetric Light Tracking Fluid Engine
+        const aperture = document.getElementById('apertureLightEngine');
+        document.addEventListener('mousemove', (e) => {
+            const shiftX = e.clientX - (window.innerWidth / 2);
+            const shiftY = e.clientY - (window.innerHeight / 2);
+            
+            aperture.style.setProperty('--lux-x', `${shiftX * 0.45}px`);
+            aperture.style.setProperty('--lux-y', `${shiftY * 0.45}px`);
+        });
+
+        // Interactive Photometric Blueprint Mode Switcher Control
+        function toggleBlueprint(frameId) {
+            const targetFrame = document.getElementById(frameId);
+            targetFrame.classList.toggle('blueprint-mode');
+            
+            const dynamicButton = targetFrame.nextElementSibling.querySelector('.blueprint-toggle-trigger');
+            if (targetFrame.classList.contains('blueprint-mode')) {
+                dynamicButton.innerText = "Revert to Optical View";
+                dynamicButton.style.borderColor = "var(--accent-lux)";
+            } else {
+                dynamicButton.innerText = "Toggle Photometric Grid";
+                dynamicButton.style.borderColor = "var(--accent-lux-muted)";
+            }
+        }
+    </script>
+</body>
+</html>

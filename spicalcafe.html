@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SPECIAL CAFE — Total Flagship Architecture</title>
+  
+  <!-- Premium Font Registry Pairings -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       1. ADVANCED CSS VARIABLES & THEME STATE MATRIX
+       ========================================================================== */
+    :root {
+      /* Palette Setup (IDE & High Fashion Editorial Inspired) */
+      --color-parchment: #F6F3ED;
+      --color-espresso: #090908;
+      --color-vermilion: #FF3200;
+      --color-charcoal: #1C1B1A;
+      
+      /* Dynamic Theme Swapping States */
+      --bg-current: var(--color-parchment);
+      --text-current: var(--color-espresso);
+      --border-current: rgba(9, 9, 8, 0.15);
+      --border-thick-current: 3px solid var(--color-espresso);
+      
+      /* Typography Core */
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'Cormorant Garamond', serif;
+      
+      /* Fluid Type Scales (CSS Lock System) */
+      --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
+      --step-1: clamp(1.2rem, 1.08rem + 0.6vw, 1.8rem);
+      --step-2: clamp(1.8rem, 1.5rem + 1.5vw, 3.2rem);
+      --step-3: clamp(2.5rem, 2rem + 3vw, 5.5rem);
+      --step-4: clamp(3.5rem, 3rem + 7vw, 13rem);
+      
+      /* Structural Properties */
+      --grid-gap: 2rem;
+      --transition-editorial: cubic-bezier(0.85, 0, 0.15, 1);
+      --transition-momentum: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Dark Theme Modifier Injected via JS Engine */
+    body.theme-dark {
+      --bg-current: var(--color-espresso);
+      --text-current: var(--color-parchment);
+      --border-current: rgba(246, 243, 237, 0.15);
+      --border-thick-current: 3px solid var(--color-parchment);
+    }
+
+    /* ==========================================================================
+       2. RESETS & STRUCTURE SYSTEM
+       ========================================================================== */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--color-espresso);
+    }
+
+    body {
+      background-color: var(--bg-current);
+      color: var(--text-current);
+      font-family: var(--font-body);
+      font-size: var(--step-0);
+      line-height: 1.5;
+      overflow-x: hidden;
+      transition: background-color 0.8s var(--transition-momentum), color 0.8s var(--transition-momentum);
+    }
+
+    /* Fine Film Grain Surface Texture */
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 99999;
+      background-image: radial-gradient(var(--color-espresso) 1px, transparent 0), radial-gradient(var(--color-espresso) 1px, transparent 0);
+      background-size: 8px 8px;
+      background-position: 0 0, 4px 4px;
+    }
+    
+    body.theme-dark::after {
+      background-image: radial-gradient(var(--color-parchment) 1px, transparent 0), radial-gradient(var(--color-parchment) 1px, transparent 0);
+    }
+
+    /* Custom Editorial Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--color-parchment);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--color-vermilion);
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: var(--font-display);
+      text-transform: uppercase;
+      font-weight: 800;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Master Layout Framework */
+    .master-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      column-gap: var(--grid-gap);
+      width: 100%;
+      position: relative;
+    }
+
+    .section-boundary {
+      border-bottom: var(--border-thick-current);
+      padding: 12rem 0;
+      transition: border-color 0.8s var(--transition-momentum);
+    }
+
+    /* Architectural Margins Tags */
+    .vertical-anchor {
+      grid-column: 1 / 2;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      align-self: start;
+      opacity: 0.3;
+      height: 100%;
+      padding-top: 2rem;
+      border-right: var(--border-current);
+      transition: border-color 0.8s var(--transition-momentum);
+    }
+
+    /* ==========================================================================
+       3. CUSTOM HARDWARE LOGIC CURSOR
+       ========================================================================== */
+    #editorial-cursor {
+      position: fixed;
+      top: 0; left: 0;
+      width: 12px; height: 12px;
+      background-color: var(--color-vermilion);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 100000;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s var(--transition-momentum), height 0.3s var(--transition-momentum), background-color 0.3s;
+    }
+
+    #editorial-cursor.laser-focus {
+      width: 60px;
+      height: 60px;
+      background-color: transparent;
+      border: 2px solid var(--color-vermilion);
+    }
+
+    #editorial-cursor.laser-focus::after {
+      content: "VIEW";
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      color: var(--color-vermilion);
+      font-weight: 800;
+      letter-spacing: 0.1em;
+    }
+
+    /* ==========================================================================
+       4. ANIMATION MOTIONS FRAMEWORK
+       ========================================================================== */
+    .js-reveal {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: opacity 1.2s var(--transition-momentum), transform 1.2s var(--transition-momentum);
+    }
+
+    .js-reveal.is-triggered {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stagger-delay-1 { transition-delay: 0.15s; }
+
+    /* Preloader Gate System */
+    .curtain-gate {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background-color: var(--color-espresso);
+      z-index: 999999;
+      transform-origin: top;
+      transition: transform 1.4s var(--transition-editorial);
+    }
+    html.loaded .curtain-gate {
+      transform: scaleY(0);
+    }
+
+    /* ==========================================================================
+       5. CINEMATIC OVERLAY NAVIGATION BAR
+       ========================================================================== */
+    .top-bar {
+      position: fixed;
+      top: 0; left: 0; width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 2.5rem 4rem;
+      z-index: 9999;
+      mix-blend-mode: difference; /* Automatically contrasts on scroll fields */
+      color: #fff;
+      pointer-events: none;
+    }
+
+    .brand-logo {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      text-transform: uppercase;
+      pointer-events: auto;
+    }
+
+    .menu-trigger {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      background: none;
+      border: none;
+      color: inherit;
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      cursor: none; /* Relies on custom tracking dot */
+    }
+
+    .trigger-text {
+      position: relative;
+      display: block;
+      transition: transform 0.4s var(--transition-momentum);
+    }
+
+    .trigger-text::after {
+      content: "CLOSE";
+      position: absolute;
+      top: 100%; left: 0;
+      color: var(--color-vermilion);
+    }
+
+    .menu-trigger.is-active .trigger-text {
+      transform: translateY(-100%);
+    }
+
+    /* Fullscreen Overlay Sheet Layout */
+    .nav-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background-color: var(--color-espresso);
+      color: var(--color-parchment);
+      z-index: 9000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 10vw;
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      transition: clip-path var(--transition-editorial);
+    }
+
+    .nav-overlay.is-open {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+
+    .nav-overlay::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: radial-gradient(var(--color-parchment) 1px, transparent 0);
+      background-size: 8px 8px;
+      opacity: 0.03;
+      pointer-events: none;
+    }
+
+    .massive-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      list-style: none;
+    }
+
+    .massive-links li {
+      overflow: hidden;
+    }
+
+    .massive-links a {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 7.5vw, 8.5rem);
+      font-weight: 800;
+      line-height: 0.85;
+      text-transform: uppercase;
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(246, 243, 237, 0.3);
+      display: inline-block;
+      position: relative;
+      transform: translateY(100%);
+      transition: transform 0.8s var(--transition-editorial), -webkit-text-stroke 0.4s, color 0.4s;
+    }
+
+    .nav-overlay.is-open .massive-links a {
+      transform: translateY(0);
+    }
+
+    .massive-links li:nth-child(1) a { transition-delay: 0.05s; }
+    .massive-links li:nth-child(2) a { transition-delay: 0.12s; }
+    .massive-links li:nth-child(3) a { transition-delay: 0.19s; }
+    .massive-links li:nth-child(4) a { transition-delay: 0.26s; }
+
+    .massive-links a:hover {
+      color: var(--color-parchment);
+      -webkit-text-stroke: 1.5px var(--color-parchment);
+    }
+
+    .massive-links a::after {
+      content: "";
+      position: absolute;
+      top: 50%; left: 0;
+      width: 0%; height: 6px;
+      background-color: var(--color-vermilion);
+      transition: width 0.5s var(--transition-momentum);
+      transform: translateY(-50%);
+    }
+
+    .massive-links a:hover::after {
+      width: 100%;
+    }
+
+    .overlay-footer {
+      position: absolute;
+      bottom: 3rem; left: 10vw; right: 10vw;
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid rgba(246, 243, 237, 0.15);
+      padding-top: 1.5rem;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s var(--transition-editorial), transform 0.8s var(--transition-editorial);
+      transition-delay: 0.4s;
+    }
+
+    .nav-overlay.is-open .overlay-footer {
+      opacity: 0.5;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       6. CORE CONTENT LAYOUT STYLING
+       ========================================================================== */
+    header.hero-module {
+      min-height: 100vh;
+      padding-top: 16rem;
+      padding-bottom: 6rem;
+    }
+
+    .hero-title-container {
+      grid-column: 2 / 13;
+    }
+
+    .hero-title-container h1 {
+      font-size: var(--step-4);
+      margin-bottom: 6rem;
+    }
+
+    .hero-title-container h1 span.accent-slice {
+      color: var(--color-vermilion);
+      display: block;
+    }
+
+    .hero-sub-matrix {
+      grid-column: 3 / 12;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4rem;
+    }
+
+    .meta-metric-card h3 {
+      font-size: var(--step-2);
+      color: transparent;
+      -webkit-text-stroke: 1.5px var(--text-current);
+      margin-bottom: 1rem;
+      transition: -webkit-text-stroke 0.8s;
+    }
+
+    .meta-metric-card p {
+      font-size: 1.3rem;
+      font-style: italic;
+    }
+
+    /* Ethos Layout Canvas */
+    .ethos-text-block {
+      grid-column: 2 / 7;
+      padding-right: 2rem;
+    }
+
+    .ethos-text-block h2 {
+      font-size: var(--step-2);
+      margin-bottom: 3rem;
+    }
+
+    .ethos-text-block em {
+      font-family: var(--font-body);
+      font-weight: 300;
+      color: var(--color-vermilion);
+    }
+
+    .ethos-media-wrapper {
+      grid-column: 7 / 13;
+      height: 600px;
+      background-color: var(--color-charcoal);
+      position: relative;
+      overflow: hidden;
+      clip-path: polygon(0 0, 100% 0, 100% 88%, 88% 100%, 0 100%);
+      filter: grayscale(1) contrast(1.1);
+      transition: filter 0.6s var(--transition-momentum);
+    }
+
+    .ethos-media-wrapper img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    /* Fluid Matrix Menu Components */
+    .matrix-workspace {
+      grid-column: 3 / 12;
+    }
+
+    .matrix-controls-bar {
+      display: flex;
+      gap: 2rem;
+      margin-bottom: 5rem;
+      border-bottom: var(--border-current);
+      padding-bottom: 1.5rem;
+      transition: border-color 0.8s;
+    }
+
+    .matrix-filter-btn {
+      background: none;
+      border: none;
+      font-family: var(--font-display);
+      font-size: 1rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text-current);
+      opacity: 0.4;
+      cursor: none;
+      position: relative;
+      transition: opacity 0.4s;
+    }
+
+    .matrix-filter-btn.is-active {
+      opacity: 1;
+      color: var(--color-vermilion);
+    }
+
+    .formulation-grid-engine {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 6rem;
+      row-gap: 4rem;
+    }
+
+    .formula-item-card {
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px dashed var(--border-current);
+      padding-bottom: 2rem;
+      transition: opacity 0.5s var(--transition-momentum), transform 0.5s var(--transition-momentum), border-color 0.8s;
+    }
+
+    .formula-item-card.is-filtered-out {
+      opacity: 0;
+      transform: scale(0.95);
+      position: absolute;
+      pointer-events: none;
+      visibility: hidden;
+    }
+
+    .formula-card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1rem;
+    }
+
+    .formula-card-meta h4 {
+      font-size: calc(var(--step-1) * 1.2);
+    }
+
+    .formula-price {
+      font-family: var(--font-body);
+      font-size: var(--step-1);
+      font-style: italic;
+    }
+
+    /* Storefront Display Archive Blocks */
+    .archive-header {
+      grid-column: 2 / 12;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 6rem;
+    }
+
+    .archive-display-cluster {
+      grid-column: 2 / 12;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+
+    .object-plate-card {
+      border: 1px solid var(--border-current);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.4s, background-color 0.4s;
+    }
+
+    .object-plate-card:hover {
+      border-color: var(--text-current);
+      background-color: rgba(28, 27, 26, 0.03);
+    }
+
+    body.theme-dark .object-plate-card:hover {
+      background-color: rgba(246, 243, 237, 0.03);
+    }
+
+    .object-image-vault {
+      width: 100%;
+      height: 400px;
+      background-color: var(--color-charcoal);
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      filter: grayscale(1);
+      transition: filter 0.4s;
+    }
+
+    .object-plate-card:hover .object-image-vault {
+      filter: grayscale(0.2);
+    }
+
+    .object-image-vault img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s var(--transition-momentum);
+    }
+
+    .object-plate-card:hover .object-image-vault img {
+      transform: scale(1.06);
+    }
+
+    .object-description-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .object-description-row h4 {
+      font-size: 1.3rem;
+    }
+
+    .object-tagline {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      opacity: 0.5;
+      text-transform: uppercase;
+      margin-top: 0.3rem;
+    }
+
+    .object-valuation {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--color-vermilion);
+    }
+
+    /* Spatial Split Map Matrix Layout */
+    .spatial-split-system {
+      grid-column: 2 / 12;
+      display: grid;
+      grid-template-columns: 5fr 7fr;
+      gap: 4rem;
+    }
+
+    .spatial-dashboard {
+      border: var(--border-thick-current);
+      padding: 3rem;
+      margin-top: 2rem;
+      transition: border-color 0.8s;
+    }
+
+    .dashboard-row {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-current);
+      padding: 1.5rem 0;
+      transition: border-color 0.8s;
+    }
+
+    .dashboard-row:last-child { border-bottom: none; }
+    
+    .dashboard-row h5 { font-size: 1rem; opacity: 0.6; }
+    .dashboard-row p { font-size: 1.4rem; text-align: right; }
+
+    .spatial-visual-monolith {
+      height: 100%;
+      min-height: 550px;
+      background-color: var(--color-charcoal);
+      filter: grayscale(1);
+      clip-path: polygon(12% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+
+    .spatial-visual-monolith img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+
+    /* Kinetic Continuous Typography Band */
+    .runway-marquee-band {
+      grid-column: 1 / 13;
+      border-bottom: var(--border-thick-current);
+      overflow: hidden;
+      white-space: nowrap;
+      padding-bottom: 2rem;
+      margin-bottom: 4rem;
+      transition: border-color 0.8s;
+    }
+
+    .marquee-infinite-text {
+      font-family: var(--font-display);
+      font-size: 12vw;
+      font-weight: 800;
+      text-transform: uppercase;
+      line-height: 0.8;
+      display: inline-block;
+      color: transparent;
+      -webkit-text-stroke: 2px var(--text-current);
+      animation: marqueeLoop 24s linear infinite;
+      transition: -webkit-text-stroke 0.8s;
+    }
+
+    @keyframes marqueeLoop {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+
+    .footer-terminal-row {
+      grid-column: 2 / 12;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      opacity: 0.5;
+      padding-bottom: 3rem;
+    }
+
+    /* ==========================================================================
+       7. GRAPHIC RE-GRIDDING RESPONSIVE SYSTEM
+       ========================================================================== */
+    @media (max-width: 1100px) {
+      .master-grid {
+        display: flex;
+        flex-direction: column;
+        padding: 0 2rem;
+      }
+      .top-bar { padding: 2rem; }
+      #editorial-cursor { display: none !important; }
+      .vertical-anchor { display: none; }
+      header.hero-module { padding-top: 12rem; }
+      .hero-sub-matrix { display: flex; flex-direction: column; gap: 3rem; }
+      .ethos-media-wrapper { height: 380px; clip-path: none; margin-top: 3rem; }
+      .formulation-grid-engine { grid-template-columns: 1fr; gap: 3rem; }
+      .archive-header { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+      .archive-display-cluster { grid-template-columns: 1fr; gap: 4rem; }
+      .spatial-split-system { grid-template-columns: 1fr; gap: 3rem; }
+      .spatial-visual-monolith { clip-path: none; min-height: 350px; }
+      .footer-terminal-row { flex-direction: column; gap: 1.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Curtain Gate Preloader Structural Layer -->
+  <div class="curtain-gate" id="preloader-gate"></div>
+
+  <!-- Hardware Tracking Custom Cursor Component -->
+  <div id="editorial-cursor"></div>
+
+  <!-- FIXED BLEND MODE TOP BAR HEADER -->
+  <nav class="top-bar">
+    <div class="brand-logo">SPECIAL.</div>
+    <button class="menu-trigger" id="js-menu-trigger">
+      <span class="trigger-text">MENU</span>
+    </button>
+  </nav>
+
+  <!-- CINEMATIC TAKEOVER NAV OVERLAY -->
+  <div class="nav-overlay" id="js-nav-overlay">
+    <ul class="massive-links">
+      <li><a href="#ethos" class="nav-jump">01 / Ethos</a></li>
+      <li><a href="#matrix" class="nav-jump">02 / Formulation</a></li>
+      <li><a href="#archive" class="nav-jump">03 / Objects</a></li>
+      <li><a href="#spatial" class="nav-jump">04 / Spatial Grid</a></li>
+    </ul>
+    <div class="overlay-footer">
+      <div>Coordinates: 114 Concrete Blvd, District 4</div>
+      <div>Operating: 0700 — 1700 Daily</div>
+    </div>
+  </div>
+
+  <!-- SECTION 1: THE HERO ARCHITECTURE INDEX -->
+  <header class="hero-module master-grid">
+    <div class="vertical-anchor">SYSTEM GATE // ARCHIVE</div>
+    <div class="hero-title-container">
+      <h1 class="js-reveal">The Science Of <span class="accent-slice">Extraction.</span></h1>
+      
+      <div class="hero-sub-matrix js-reveal stagger-delay-1">
+        <div class="meta-metric-card">
+          <h3>88.2°C</h3>
+          <p>Thermal pressure metric threshold locked for washing phase extractions.</p>
+        </div>
+        <div class="meta-metric-card">
+          <h3>1:1.20</h3>
+          <p>The pure spatial golden layout rule integrated across our architectural seating labs.</p>
+        </div>
+        <div class="meta-metric-card">
+          <h3>#FF3200</h3>
+          <p>Signature high-energy visual light spectrum wavelength applied to core components.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- SECTION 2: THE ANCHORED ETHOS & DYNAMIC PHOTO FRAME -->
+  <section id="ethos" class="section-boundary master-grid js-reveal">
+    <div class="vertical-anchor">01 // MANIFESTO ARCHIVE</div>
+    <div class="ethos-text-block">
+      <div class="editorial-badge">CORE DISCIPLINE</div>
+      <h2>We reject corporate automation. We pursue an <em>uncompromising sensory curation</em> structured for architectural purists.</h2>
+      <p>Special Cafe processes micro-lots via localized macro-environmental analytics. Each recipe matrix outputs structural liquid clarity calibrated specifically for creative practitioners who measure actions down to the absolute micron.</p>
+    </div>
+    <div class="ethos-media-wrapper interactive-image-hook">
+      <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1500" alt="Special Extraction Mechanics">
+    </div>
+  </section>
+
+  <!-- SECTION 3: THE INTERACTIVE FLUID MATRIX (THEME TRANSITION TARGET) -->
+  <section id="matrix" class="section-boundary master-grid js-reveal" data-theme-target="dark">
+    <div class="vertical-anchor">02 // FLUID LAB SOLUTIONS</div>
+    <div class="matrix-workspace">
+      
+      <div class="matrix-controls-bar">
+        <button class="matrix-filter-btn is-active" data-filter-target="all">All Solutions</button>
+        <button class="matrix-filter-btn" data-filter-target="pressure">Pressure Driven</button>
+        <button class="matrix-filter-btn" data-filter-target="gravity">Gravity Driven</button>
+      </div>
+
+      <div class="formulation-grid-engine">
+        
+        <div class="formula-item-card" data-formula-type="pressure">
+          <div class="formula-card-meta">
+            <h4>Concentrate Alpha</h4>
+            <div class="formula-price">$7.00</div>
+          </div>
+          <p>Double espresso pull using single origin washed heirloom profiles. Clean brightness with definitive bergamot structures.</p>
+        </div>
+
+        <div class="formula-item-card" data-formula-type="pressure">
+          <div class="formula-card-meta">
+            <h4>Lithium Sweet</h4>
+            <div class="formula-price">$8.50</div>
+          </div>
+          <p>Aerated espresso chilled immediately over sterile carbon spheres to isolate high-concentration stone-fruit sugars.</p>
+        </div>
+
+        <div class="formula-item-card" data-formula-type="pressure">
+          <div class="formula-card-meta">
+            <h4>Emulsion White</h4>
+            <div class="formula-price">$9.00</div>
+          </div>
+          <p>Anaerobic maceration processing beans combined meticulously with texturized non-homogenized dairy micro-foams.</p>
+        </div>
+
+        <div class="formula-item-card" data-formula-type="gravity">
+          <div class="formula-card-meta">
+            <h4>Geisha Varietal Zero</h4>
+            <div class="formula-price">$18.00</div>
+          </div>
+          <p>Rare Panama Geisha run through variable-speed custom chemistry cones. Extreme transparency with tea-like floral clarity.</p>
+        </div>
+
+        <div class="formula-item-card" data-formula-type="gravity">
+          <div class="formula-card-meta">
+            <h4>Atmospheric Slow Drip</h4>
+            <div class="formula-price">$12.00</div>
+          </div>
+          <p>An 18-hour cold isolation extraction path pulling delicate sensory notes without structural oxidation damage.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: THE OBJECT ARCHIVE (RETAIL HARDWARE MODULE) -->
+  <section id="archive" class="section-boundary master-grid js-reveal">
+    <div class="vertical-anchor">03 // PHYSICAL OBJECTS</div>
+    <div class="archive-header">
+      <h2>Retained Artifacts.</h2>
+      <p style="font-style: italic; max-width: 380px;">Hardware and stable roasting frameworks archived for execution in external environments.</p>
+    </div>
+
+    <div class="archive-display-cluster">
+      
+      <div class="object-plate-card interactive-image-hook">
+        <div class="object-image-vault">
+          <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=800" alt="Roast Lot Bag">
+        </div>
+        <div class="object-description-row">
+          <div>
+            <h4>Lot 09A — Volcan Azul</h4>
+            <div class="object-tagline">Costa Rica // Anaerobic Processing</div>
+          </div>
+          <div class="object-valuation">$10</div>
+        </div>
+      </div>
+
+      <div class="object-plate-card interactive-image-hook">
+        <div class="object-image-vault">
+          <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=800" alt="Brutalist Cup Ceramic">
+        </div>
+        <div class="object-description-row">
+          <div>
+            <h4>Brutalist Cup No. 4</h4>
+            <div class="object-tagline">Hand-thrown Raw Unglazed Stoneware</div>
+          </div>
+          <div class="object-valuation">$20</div>
+        </div>
+      </div>
+
+      <div class="object-plate-card interactive-image-hook">
+        <div class="object-image-vault">
+          <img src="https://images.unsplash.com/photo-1577968897966-3d4325b36b61?q=80&w=800" alt="Lab Scale Matrix">
+        </div>
+        <div class="object-description-row">
+          <div>
+            <h4>Chrono Matrix Scale</h4>
+            <div class="object-tagline">Hardware // 0.1g Fluid Detection</div>
+          </div>
+          <div class="object-valuation">$10</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 5: SPATIAL ORDER COORDINATES -->
+  <section id="spatial" class="section-boundary master-grid js-reveal">
+    <div class="vertical-anchor">04 // LOCATION TELEMETRY</div>
+    <div class="spatial-split-system">
+      <div>
+        <h2>The Monolith Coordinates.</h2>
+        <div class="spatial-dashboard">
+          <div class="dashboard-row">
+            <h5>Physical Anchor</h5>
+            <p>114 Concrete Blvd,<br>Studio Delta, District 4</p>
+          </div>
+          <div class="dashboard-row">
+            <h5>Chronology</h5>
+            <p>0700 — 1700 Daily Framework</p>
+          </div>
+          <div class="dashboard-row">
+            <h5>Telemetry Connect</h5>
+            <p>spatial@special.cafe<br>+1 (888) 088-2931</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="spatial-visual-monolith">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1500" alt="Special Cafe Interior Space">
+      </div>
+    </div>
+  </section>
+
+  <!-- RUNWAY FOOTER MARQUEE -->
+  <footer class="master-grid">
+    <div class="runway-marquee-band">
+      <div class="marquee-infinite-text">
+        SPECIAL CAFE — RADICAL EXTRACTION MATRIX — SPECIAL CAFE — RADICAL EXTRACTION MATRIX — 
+      </div>
+    </div>
+    
+    <div class="footer-terminal-row">
+      <div>System Profile Engine v4.0.0 // 2026</div>
+      <div>Designed under absolute editorial guidelines.</div>
+      <div>All Rights Overturned.</div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       8. MODULAR VANILLA JAVASCRIPT LOGIC ENGINE
+       ========================================================================== -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      /* ------------------------------------------------------------------------
+       * A. SYSTEM INITIALIZER & PRELOADER DEPLOYMENT
+       * ------------------------------------------------------------------------ */
+      setTimeout(() => {
+        document.documentElement.classList.add("loaded");
+      }, 200);
+
+      /* ------------------------------------------------------------------------
+       * B. HARDWARE TRACKING INTERACTIVE CURSOR ENGINE
+       * ------------------------------------------------------------------------ */
+      const customCursor = document.getElementById("editorial-cursor");
+      let mouseX = 0, mouseY = 0;
+      let currentX = 0, currentY = 0;
+
+      window.addEventListener("mousemove", (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      });
+
+      function renderCursorTracking() {
+        const interpolationFactor = 0.15;
+        currentX += (mouseX - currentX) * interpolationFactor;
+        currentY += (mouseY - currentY) * interpolationFactor;
+        
+        customCursor.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
+        requestAnimationFrame(renderCursorTracking);
+      }
+      requestAnimationFrame(renderCursorTracking);
+
+      function updateCursorHooks() {
+        const focusInteractiveElements = document.querySelectorAll("a, button, .interactive-image-hook, .menu-trigger");
+        focusInteractiveElements.forEach(element => {
+          element.addEventListener("mouseenter", () => customCursor.classList.add("laser-focus"));
+          element.addEventListener("mouseleave", () => customCursor.classList.remove("laser-focus"));
+        });
+      }
+      updateCursorHooks();
+
+      /* ------------------------------------------------------------------------
+       * C. CINEMATIC OVERLAY NAVIGATION OVERRIDES
+       * ------------------------------------------------------------------------ */
+      const triggerBtn = document.getElementById("js-menu-trigger");
+      const navOverlay = document.getElementById("js-nav-overlay");
+      const jumpLinks = document.querySelectorAll(".nav-jump");
+
+      function toggleMenu() {
+        triggerBtn.classList.toggle("is-active");
+        navOverlay.classList.toggle("is-open");
+        
+        // Block external view layout scanning during menu display states
+        if (navOverlay.classList.contains("is-open")) {
+          document.body.style.overflow = "hidden";
+        } else {
+          document.body.style.overflow = "";
+        }
+      }
+
+      triggerBtn.addEventListener("click", toggleMenu);
+      jumpLinks.forEach(link => link.addEventListener("click", toggleMenu));
+
+      /* ------------------------------------------------------------------------
+       * D. SCROLL-DRIVEN STAGGERED ELEMENT ENTRY SYSTEM (INTERSECTION OBSERVER)
+       * ------------------------------------------------------------------------ */
+      const layoutRevealOptions = {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+      };
+
+      const layoutRevealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-triggered");
+            const nestedChains = entry.target.querySelectorAll(".hero-sub-matrix");
+            nestedChains.forEach(chain => chain.classList.add("is-triggered"));
+            observer.unobserve(entry.target);
+          }
+        });
+      }, layoutRevealOptions);
+
+      const itemsToRevealArr = document.querySelectorAll(".js-reveal");
+      itemsToRevealArr.forEach(item => layoutRevealObserver.observe(item));
+
+      /* ------------------------------------------------------------------------
+       * E. ADVANCED ENVIRONMENT THEME INVERTER HOOKS
+       * ------------------------------------------------------------------------ */
+      const themeInversionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            document.body.classList.add("theme-dark");
+          } else {
+            document.body.classList.remove("theme-dark");
+          }
+        });
+      }, { threshold: 0.25, rootMargin: "-10% 0px -30% 0px" });
+
+      const darkThemeTriggerElement = document.querySelector('section[data-theme-target="dark"]');
+      if (darkThemeTriggerElement) {
+        themeInversionObserver.observe(darkThemeTriggerElement);
+      }
+
+      /* ------------------------------------------------------------------------
+       * F. INTERACTIVE CATALOGUE FILTER MATRIX
+       * ------------------------------------------------------------------------ */
+      const catalogFilterButtons = document.querySelectorAll(".matrix-filter-btn");
+      const catalogueFormulaCards = document.querySelectorAll(".formula-item-card");
+
+      catalogFilterButtons.forEach(button => {
+        button.addEventListener("click", () => {
+          catalogFilterButtons.forEach(btn => btn.classList.remove("is-active"));
+          button.classList.add("is-active");
+
+          const selectedClassification = button.getAttribute("data-filter-target");
+
+          catalogueFormulaCards.forEach(card => {
+            const cardClassification = card.getAttribute("data-formula-type");
+            if (selectedClassification === "all" || cardClassification === selectedClassification) {
+              card.classList.remove("is-filtered-out");
+            } else {
+              card.classList.add("is-filtered-out");
+            }
+          });
+        });
+      });
+
+    });
+  </script>
+</body>
+</html>

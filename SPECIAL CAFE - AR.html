@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Café | التجربة الفاخرة الكاملة</title>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --gold-color: #c5a880;
+            --gold-hover: #b3956b;
+            --dark-coffee: #150d08;
+            --accent-brown: #2a1b10;
+            --warm-beige: #faf6f0;
+            --white-pure: #ffffff;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* إجبار الموقع بالكامل على الاتجاه العربي الصحيح والمحاذاة لليمين */
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--warm-beige);
+            color: var(--dark-coffee);
+            overflow-x: hidden;
+            direction: rtl !important;
+            text-align: right !important;
+        }
+
+        h1, h2, h3, h4, h5, h6, p, span, a, input, select, label, textarea {
+            text-align: right !important;
+            direction: rtl !important;
+        }
+
+        h1, h2, h3, h4, .special-font {
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 900;
+        }
+        
+        /* ضبط اسم البراند الأجنبي ليكون متناسقاً */
+        .en-brand {
+            font-family: 'Marcellus', serif;
+            letter-spacing: 3px;
+            color: var(--gold-color) !important;
+            direction: ltr !important;
+            text-align: center !important;
+        }
+
+        /* نافبار ذكي ممتد مجهز للغة العربية */
+        .navbar {
+            background-color: rgba(21, 13, 8, 0.98) !important;
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(197, 168, 128, 0.15);
+            padding: 18px 0;
+        }
+
+        .navbar-nav {
+            padding-right: 0 !important; /* إلغاء البادينج الافتراضي اللاتيني */
+        }
+
+        .nav-link {
+            color: #fff !important;
+            font-weight: 500;
+            margin: 0 12px;
+            transition: 0.3s;
+            font-size: 1.05rem;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--gold-color) !important;
+        }
+
+        /* البانر الرئيسي الضخم */
+        .hero-slider {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            color: #fff;
+        }
+
+        .btn-gold {
+            background-color: var(--gold-color);
+            color: var(--dark-coffee);
+            font-weight: 700;
+            border: 2px solid var(--gold-color);
+            padding: 14px 40px;
+            border-radius: 0;
+            transition: 0.4s ease;
+            font-size: 1.1rem;
+            text-align: center !important;
+        }
+
+        .btn-gold:hover {
+            background-color: transparent;
+            color: var(--gold-color);
+            box-shadow: 0 0 15px rgba(197, 168, 128, 0.4);
+        }
+
+        .section-padding {
+            padding: 120px 0;
+        }
+
+        .section-title {
+            text-align: center !important;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 20px;
+            margin-bottom: 25px;
+            color: var(--dark-coffee);
+            text-align: center !important;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--gold-color);
+        }
+
+        /* أزرار الفلترة */
+        .menu-filter-btn {
+            background: transparent;
+            border: 1px solid var(--gold-color);
+            color: var(--dark-coffee);
+            padding: 10px 30px;
+            margin: 6px;
+            font-weight: 700;
+            transition: 0.3s ease;
+        }
+
+        .menu-filter-btn.active, .menu-filter-btn:hover {
+            background-color: var(--dark-coffee);
+            color: var(--gold-color);
+            border-color: var(--dark-coffee);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* تصميم الكروت الفاخرة المحدثة */
+        .menu-item-card {
+            background-color: var(--white-pure);
+            border: 1px solid rgba(197, 168, 128, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(21, 13, 8, 0.04);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+        }
+
+        .menu-item-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px rgba(21, 13, 8, 0.12);
+            border-color: var(--gold-color);
+        }
+
+        .card-img-container {
+            position: relative;
+            overflow: hidden;
+            height: 260px;
+            background-color: var(--dark-coffee);
+        }
+
+        .card-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .menu-item-card:hover .card-img-container img {
+            transform: scale(1.08);
+            opacity: 0.9;
+        }
+
+        /* بادج مميز للكارت مضبوط جهة اليمين */
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--dark-coffee);
+            color: var(--gold-color);
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border: 1px solid var(--gold-color);
+            z-index: 10;
+        }
+
+        .card-body-custom {
+            padding: 30px;
+        }
+
+        .menu-price {
+            color: var(--gold-color);
+            font-weight: 900;
+            font-size: 1.4rem;
+            border-bottom: 2px dashed rgba(197, 168, 128, 0.3);
+            padding-bottom: 5px;
+            text-align: left !important; /* السعر يظهر بشكل متناسق يسار العنوان */
+        }
+
+        .item-title {
+            font-size: 1.4rem;
+            color: var(--dark-coffee);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .item-description {
+            color: #665e57;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 0;
+        }
+
+        /* قسم الحجز المطور */
+        .booking-section {
+            background: linear-gradient(rgba(21, 13, 8, 0.92), rgba(21, 13, 8, 0.95)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070') no-repeat center center/cover;
+            color: #fff;
+        }
+
+        .form-control, .form-select {
+            background-color: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(197, 168, 128, 0.25);
+            color: #fff;
+            border-radius: 0;
+            padding: 14px;
+            text-align: right !important;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: rgba(255, 255, 255, 0.08);
+            border-color: var(--gold-color);
+            color: #fff;
+            box-shadow: none;
+        }
+
+        /* التقييمات */
+        .review-card {
+            background: var(--white-pure);
+            padding: 45px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.02);
+            border-right: 5px solid var(--gold-color);
+            border-left: none;
+        }
+
+        .stars {
+            color: #ffc107;
+            text-align: right !important;
+        }
+
+        /* فوتر */
+        footer {
+            background-color: var(--dark-coffee);
+            color: #fff;
+            padding: 80px 0 40px 0;
+            border-top: 4px solid var(--gold-color);
+        }
+        
+        footer * {
+            text-align: center !important; /* الفوتر يتوسط الصفحة للحصول على مظهر احترافي */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- النافبار العلوي -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#home">
+                <span class="en-brand fs-2 fw-bold">SPECIAL CAFÉ</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link active" href="#home">الرئيسية</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#story">رحلتنا وشغفنا</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#menu">المنيو السبيشيال</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#booking">حجز طاولات الفخامة</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#reviews">مجتمعنا</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">عناوين الفروع</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3 ms-lg-4">
+                    <a href="#booking" class="btn btn-gold btn-sm py-2 px-4">احجز مكانك</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. قسم الرئيسية (Hero) -->
+    <section id="home" class="hero-slider">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9 text-start">
+                    <span class="text-warning mb-3 d-block fw-bold fs-5" style="letter-spacing: 1px;">الريادة في صناعة القهوة المختصة</span>
+                    <h1 class="display-2 text-white mb-4" style="line-height: 1.2;">رائحة القهوة تكتمل وعالم الفخامة <br><span style="color: var(--gold-color);">ينتظرك في كل كوب</span></h1>
+                    <p class="lead text-white-50 mb-5 fs-4" style="max-width: 850px;">نحن لا نصنع مجرد قهوة، بل نصوغ لحظات إلهام يومية. نختار حبوب البن بعناية فائقة من المزارع المرتفعة، ونحمصها بشغف لنقدم لك تجربة حسّية متكاملة تأخذ حواسك في رحلة فريدة من نوعها.</p>
+                    <div class="d-flex gap-3 justify-content-start">
+                        <a href="#menu" class="btn btn-gold">اكتشف المنيو الحصري</a>
+                        <a href="#booking" class="btn btn-outline-light rounded-0 px-4 py-3">طلب حجز مسبق للأنشطة</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. قسم قصتنا (About) -->
+    <section id="story" class="section-padding bg-white">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=600" alt="معمل القهوة الاحترافي" class="img-fluid w-100 shadow-lg" style="border-right: 8px solid var(--gold-color); border-left:none;">
+                </div>
+                <div class="col-lg-6">
+                    <div class="section-title text-end mb-4">
+                        <h2 class="text-dark">حكايتنا الرائدة وفلسفة الجودة</h2>
+                    </div>
+                    <p class="lead text-muted mb-4 fw-bold">تأسس Special Café ليكون الملاذ الأول لعشاق التميز، والباحثين عن النكهات الأصلية غير المقلدة.</p>
+                    <p class="text-secondary mb-4 lh-lg">بدأت قصتنا من الشغف بالسفر عبر قارات العالم لاستكشاف حقول البن الممتدة في مرتفعات إثيوبيا، كولومبيا، وجبال الأنديز. قمنا ببناء علاقات مباشرة مع المزارعين المحليين لضمان الحصول على المحاصيل العضوية والنادرة. في معاملنا الخاصة، تخضع كل دفعة بن لاختبارات تذوق دقيقة لتحديد بروفايل التحميص المثالي الذي يبرز النكهات الكامنة من الفاكهة، الشوكولاتة، والمكسرات، لنضمن أن تكون كل رشفة بمثابة لوحة فنية متكاملة الأركان.</p>
+                    <div class="row g-4 mt-2">
+                        <div class="col-md-6">
+                            <h4 class="text-dark fw-bold"><i class="fa-solid fa-gem text-warning me-2"></i> سلالات نادرة وحصرية</h4>
+                            <p class="small text-muted">نمتلك عقوداً حصرية لجلب أفضل وأندر محاصيل البن المقيّمة عالمياً بأعلى درجات الجودة الفاخرة.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h4 class="text-dark fw-bold"><i class="fa-solid fa-graduation-cap text-warning me-2"></i> طاقم باريستا معتمد</h4>
+                            <p class="small text-muted">جميع صناع القهوة لدينا يحملون شهادات دولية معتمدة من جمعية القهوة المختصة العالمية (SCA).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. قسم المنيو الفخم بالتصفية التفاعلية -->
+    <section id="menu" class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5 section-title">
+                <h2>قائمتنا الموسّعة والفاخرة</h2>
+                <p class="text-muted fs-5">استكشف خياراتنا المحضرة يدوياً على أيدي أفضل خبراء المشروبات والمخبوزات في المملكة</p>
+                <div class="d-flex justify-content-center flex-wrap mt-4">
+                    <button class="btn menu-filter-btn active" onclick="filterMenu('all')">كل المنيو</button>
+                    <button class="btn menu-filter-btn" onclick="filterMenu('hot')">قهوة ساخنة وتقطير</button>
+                    <button class="btn menu-filter-btn" onclick="filterMenu('cold')">مشروبات باردة ومبتكرة</button>
+                    <button class="btn menu-filter-btn" onclick="filterMenu('sweets')">مخبوزات وحلويات فرنسية</button>
+                </div>
+            </div>
+
+            <!-- شبكة المنتجات -->
+            <div class="row g-4" id="menu-grid">
+                
+                <!-- منتج 1 -->
+                <div class="col-lg-4 col-md-6 menu-item hot">
+                    <div class="menu-item-card h-100">
+                        <div class="card-badge">الأكثر مبيعاً</div>
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=600" alt="Spanish Latte">
+                        </div>
+                        <div class="card-body-custom">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h3 class="item-title mb-0">سبانش لاتيه الملكي الحار</h3>
+                                <span class="menu-price">26 ر.س</span>
+                            </div>
+                            <p class="item-description">مزيج متوازن للغاية من قطرات الإسبريسو المستخلصة من حبوب بن كولومبية فاخرة، ممزوجة مع الحليب الطازج المبخر لدرجة حرارة مثالية وحليب مكثف محضر منزلياً لإعطائك قواماً كريمياً غنياً لا ينسى.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- منتج 2 -->
+                <div class="col-lg-4 col-md-6 menu-item hot">
+                    <div class="menu-item-card h-100">
+                        <div class="card-badge">سبيشيال</div>
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?q=80&w=600" alt="V60">
+                        </div>
+                        <div class="card-body-custom">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h3 class="item-title mb-0">قهوة V60 قطرات إثيوبية</h3>
+                                <span class="menu-price">32 ر.س</span>
+                            </div>
+                            <p class="item-description">قهوة مقطرة ببطء وعناية فائقة عبر فلاتر خاصة باستخدام سلالة هيرلوم الإثيوبية العريقة المجففة شمسياً. تتميز هذه القهوة الفاخرة بقوام متوسط وإيحاءات عطرية واضحة تحاكي الياسمين والفاكهة الاستوائية.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- منتج 3 -->
+                <div class="col-lg-4 col-md-6 menu-item cold">
+                    <div class="menu-item-card h-100">
+                        <div class="card-badge">منعش</div>
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=600" alt="Iced Latte">
+                        </div>
+                        <div class="card-body-custom">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h3 class="item-title mb-0">آيس سيرب لاتيه ديلوكس</h3>
+                                <span class="menu-price">28 ر.س</span>
+                            </div>
+                            <p class="item-description">جرعتين مكثفتين من إسبريسو التحميص المتوسط مبردة على قطع ثلجية نقية، مع تدفق سلس للحليب البارد كامل الدسم المضاف إليه نكهة السيرب السبيشيال السرية المستخلصة من أعواد الفانيليا الطبيعية.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- منتج 4 -->
+                <div class="col-lg-4 col-md-6 menu-item sweets">
+                    <div class="menu-item-card h-100">
+                        <div class="card-badge">طازج يومياً</div>
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1607958996333-41aef7caefaa?q=80&w=600" alt="Croissant">
+                        </div>
+                        <div class="card-body-custom">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h3 class="item-title mb-0">كرواسون اللوز والزبدة</h3>
+                                <span class="menu-price">18 ر.س</span>
+                            </div>
+                            <p class="item-description">مخبوز فرنسي كلاسيكي محضر على يد خبير المعجنات لدينا باستخدام الزبدة النيوزيلندية الفاخرة بطبقات هشة ومقرمشة ومورقة، محشو ومغطى بكريمة اللوز الغنية ورقائق اللوز المحمصة الذهبية المقرمشة.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- منتج 5 -->
+                <div class="col-lg-4 col-md-6 menu-item sweets">
+                    <div class="menu-item-card h-100">
+                        <div class="card-badge">جديد</div>
+                        <div class="card-img-container">
+                            <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=600" alt="Cake">
+                        </div>
+                        <div class="card-body-custom">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h3 class="item-title mb-0">موس كيك الشوكولاتة الداكنة</h3>
+                                <span class="menu-price">35 ر.س</span>
+                            </div>
+                            <p class="item-description">كعكة غنية ومترفة تتكون من طبقات إسفنجية خفيفة يفصل بينها موس الشوكولاتة البلجيكية الداكنة بنسبة تركيز 70%. تقدم مزينة بقطع التوت البري الطازج وصوص الشوكولاتة الساخن لتكتمل فخامة كوب قهوتك الفاخر.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. قسم حجز الطاولات والمناسبات -->
+    <section id="booking" class="section-padding booking-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9">
+                    <div class="section-title mb-5">
+                        <h2 class="text-white">احجز مساحتك أو طاولتك الخاصة</h2>
+                        <p class="text-white-50 mt-2 fs-5">تجنب الانتظار الطويل في أوقات الذروة واضمن أرقى الجلسات المصممة للعمل، الاجتماعات، أو الاسترخاء العائلي المريح.</p>
+                    </div>
+                    <form class="row g-4">
+                        <div class="col-md-6">
+                            <label class="form-label text-white">الاسم الثلاثي الكريم</label>
+                            <input type="text" class="form-control" placeholder="أحمد بن سلطان">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label text-white">رقم الجوال الفعال</label>
+                            <input type="tel" class="form-control" placeholder="05xxxxxxxx">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label text-white">نوع الجلسة وعدد الأفراد</label>
+                            <select class="form-select">
+                                <option>طاولة فردية (عمل ودراسة)</option>
+                                <option>طاولة لشخصين (جلسة ثنائية)</option>
+                                <option>جلسة عائلية مغلقة (3 إلى 6 أفراد)</option>
+                                <option>قاعة اجتماعات مجهزة بالكامل</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label text-white">تاريخ الحجز المفضل</label>
+                            <input type="date" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label text-white">توقيت الوصول</label>
+                            <input type="time" class="form-control">
+                        </div>
+                        <div class="col-12 text-center mt-5">
+                            <button type="submit" class="btn btn-gold px-5 py-3">إرسال طلب الحجز وتأكيده فوراً</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. قسم آراء العملاء (Reviews) -->
+    <section id="reviews" class="section-padding">
+        <div class="container">
+            <div class="text-center mb-5 section-title">
+                <h2>أصداء الجودة في عيون ضيوفنا</h2>
+                <p class="text-muted">نعتز بشهادات عملائنا ونعتبرها الدافع الأساسي لتقديم الأفضل دوماً</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="review-card">
+                        <div class="stars mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="text-muted lh-lg">"المكان يفوق الوصف من ناحية الهدوء والفخامة. الـ V60 الإثيوبية عندهم موزونة جداً ونوتات الفاكهة واضحة ونقية للغاية. التصميم والخطوط في المنيو والديكور مريحة جداً للعين، يستحق الزيارة والاعتماد كالمكان الأول لي."</p>
+                        <h5 class="text-dark mt-4 mb-1">- سارة الأحمد</h5>
+                        <span class="small text-muted">ناقدة جودة ومحبة للقهوة المختصة</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="review-card">
+                        <div class="stars mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="text-muted lh-lg">"السبانش لاتيه هنا حكاية أخرى، حلاوته موزونة تماماً ولا تطغى على طعم البن المركز القوي. الجلسات مريحة والإنترنت سريع مما يجعله مثالياً لإنجاز أعمالي الطويلة والاجتماعات مع زملائي في العمل بخصوص المشاريع الكبرى."</p>
+                        <h5 class="text-dark mt-4 mb-1">- فيصل السديري</h5>
+                        <span class="small text-muted">رائد أعمال ومستشار تقني</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="review-card">
+                        <div class="stars mb-3"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                        <p class="text-muted lh-lg">"تفاصيل المخبوزات والحلويات طازجة بشكل مذهل، كرواسون اللوز مقرمش جداً ومليء بالنكهة الفرنسية الأصلية. حجزت قاعة الاجتماعات لإطلاق مشروعي الصغير وكان التنسيق والاستقبال من طاقم الباريستا رائعاً واحترافياً للغاية."</p>
+                        <h5 class="text-dark mt-4 mb-1">- خالد منصور</h5>
+                        <span class="small text-muted">مهندس ديكور ومصمم داخلي</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. قسم الفروع والاتصال (Contact) -->
+    <section id="contact" class="section-padding bg-white">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6">
+                    <div class="section-title text-end mb-4">
+                        <h2 class="text-dark">تفضل بزيارتنا في أقرب فرع</h2>
+                    </div>
+                    <p class="text-muted mb-4 lh-lg">نحن نتواجد في أهم وأرقى المناطق الحيوية لنكون دائماً الخيار الأقرب إليك لتقديم جرعتك اليومية من السعادة والإلهام البصري والحسي.</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-4">
+                            <h5 class="fw-bold text-dark"><i class="fa-solid fa-location-dot text-warning me-2"></i> فرع العاصمة الرئيسي</h5>
+                            <p class="text-muted small mb-0 ms-4">الرياض - طريق الملك فهد - برج المجدول (مفتوح 24 ساعة طوال أيام الأسبوع)</p>
+                        </li>
+                        <li class="mb-4">
+                            <h5 class="fw-bold text-dark"><i class="fa-solid fa-location-dot text-warning me-2"></i> فرع المنطقة الساحلية</h5>
+                            <p class="text-muted small mb-0 ms-4">جدة - طريق الكورنيش - واجهة جدة البحرية (من 6 صباحاً حتى 3 فجراً)</p>
+                        </li>
+                        <li class="mb-3">
+                            <h5 class="fw-bold text-dark"><i class="fa-solid fa-phone text-warning me-2"></i> مركز الاتصال الموحد للحجوزات العامة</h5>
+                            <p class="text-muted small mb-0 ms-4">92000XXXX / الرقم المجاني المباشر للإدارة العامة</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <div class="ratio ratio-16x9 shadow-lg" style="border: 1px solid var(--gold-color);">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3624.411648058784!2d46.6715!3d24.7136!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjTCsDQyJzQ5LjAiTiA0NsKwNDAnMTcuNCJF!5e0!3m2!1sar!2ssa!4v1620000000000!5m2!1sar!2ssa" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+        <div class="container text-center">
+            <h2 class="en-brand mb-4">SPECIAL CAFÉ</h2>
+            <p class="text-white-50 mx-auto mb-4" style="max-width: 600px;">المكان الأمثل لتذوق القهوة المختصة والمخبوزات الفرنسية الطازجة الفاخرة في بيئة ملهِمة صُممت بعناية لتناسب أرقى الأذواق اليومية.</p>
+            <div class="d-flex justify-content-center gap-4 fs-3 mb-4">
+                <a href="#" class="text-white text-decoration-none"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="text-white text-decoration-none"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="text-white text-decoration-none"><i class="fa-brands fa-snapchat"></i></a>
+            </div>
+            <p class="text-white-50 small mb-0">&copy; 2026 Special Café. جميع الحقوق محفوظة لتطويرك السبيشيال والفاخر للويب.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JavaScript Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- كود الجافا سكريبت للفلترة الذكية السلسة للمنيو -->
+    <script>
+        function filterMenu(category) {
+            const buttons = document.querySelectorAll('.menu-filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            event.target.classList.add('active');
+
+            const items = document.querySelectorAll('.menu-item');
+            items.forEach(item => {
+                if (category === 'all') {
+                    item.style.display = 'block';
+                } else {
+                    if (item.classList.contains(category)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>
