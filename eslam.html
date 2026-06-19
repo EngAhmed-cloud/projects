@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البوابة الإسلامية الشاملة — صدقة جارية</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-deep: #0a2f1d;    /* أخضر محرابي ملكي */
+            --primary-light: #124e32;   /* أخضر أندلسي مضيء */
+            --accent-gold: #c5a059;     /* ذهبي فاخر لمعان ميتاليك */
+            --accent-gold-dark: #9e7d3b;
+            --bg-ivory: #faf8f5;        /* عاجي فاخر للمتن */
+            --text-dark: #1e2925;
+            --text-light: #5c6b64;
+            --white: #ffffff;
+            --box-shadow-premium: 0 15px 35px rgba(10, 47, 29, 0.05);
+            --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f5f2eb;
+            color: var(--text-dark);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* شريط التنقل العلوي الاحترافي الممتد بالكامل */
+        .premium-navbar {
+            background-color: var(--primary-deep);
+            border-bottom: 3px solid var(--accent-gold);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .navbar-brand {
+            font-family: 'Amiri', serif;
+            color: var(--accent-gold);
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .navbar-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition-smooth);
+            padding: 5px 10px;
+        }
+
+        .navbar-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .mobile-menu-trigger {
+            display: none;
+            background: none;
+            border: 2px solid var(--accent-gold);
+            color: var(--accent-gold);
+            padding: 8px 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .mobile-dropdown-menu {
+            display: none;
+            background-color: var(--primary-light);
+            border-bottom: 2px solid var(--accent-gold);
+            list-style: none;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .mobile-dropdown-menu.active { display: block; }
+
+        .mobile-dropdown-menu a {
+            display: block;
+            color: var(--white);
+            padding: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* واجهة بصرية كبرى ممتدة بالكامل تملأ الفراغات الجانبية */
+        .hero-banner-showcase {
+            background: linear-gradient(rgba(10, 47, 29, 0.85), rgba(10, 47, 29, 0.95)), 
+                        url('https://images.unsplash.com/photo-1542856391-010fb87dcfed?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            color: var(--white);
+            padding: 140px 20px;
+            text-align: center;
+            position: relative;
+            border-bottom: 6px solid var(--accent-gold);
+            box-shadow: inset 0 -10px 30px rgba(0,0,0,0.3);
+            width: 100%;
+        }
+
+        .hero-banner-showcase::after {
+            content: ""; position: absolute; top: 20px; left: 20px; right: 20px; bottom: 20px;
+            border: 2px solid var(--accent-gold); opacity: 0.3; pointer-events: none;
+        }
+
+        .hero-main-title {
+            font-family: 'Amiri', serif;
+            font-size: 3.8rem;
+            color: var(--accent-gold);
+            text-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero-tagline {
+            font-size: 1.3rem;
+            color: var(--white);
+            max-width: 900px;
+            margin: 0 auto;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* شريط التوقيتات والمزامنة العلوية الممتد المشغل حياً */
+        .live-metadata-bar {
+            background: var(--white);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            width: 100%;
+        }
+
+        .meta-item-box { display: flex; align-items: center; gap: 12px; font-weight: 700; color: var(--primary-deep); }
+        .meta-item-box span strong { color: var(--accent-gold-dark); }
+        .badge-live-next { background: var(--accent-gold); color: var(--primary-deep); padding: 4px 14px; font-size: 0.9rem; font-weight: 900; border-radius: 3px; }
+
+        /* حاوية العرض الرئيسية المضبوطة هندسياً لمنع المساحات البيضاء */
+        .portal-layout-container {
+            width: 100%;
+            max-width: 100%;
+            padding: 40px 40px;
+            display: grid;
+            grid-template-columns: 2.8fr 1.2fr;
+            gap: 35px;
+        }
+
+        /* الكروت البنائية الشاملة للخدمات */
+        .feature-card-portal {
+            background: var(--white);
+            padding: 45px;
+            border-radius: 4px;
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            box-shadow: var(--box-shadow-premium);
+            margin-bottom: 35px;
+            position: relative;
+        }
+
+        .section-headline-master {
+            font-family: 'Amiri', serif;
+            font-size: 2.4rem;
+            color: var(--primary-deep);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #f2ece0;
+            position: relative;
+        }
+
+        .section-headline-master::after {
+            content: ""; position: absolute; bottom: -2px; right: 0; width: 80px; height: 2px; background: var(--accent-gold);
+        }
+
+        /* هندسة المسبحة الإلكترونية الرقمية الفاخرة المشابهة للمواقع الكبرى */
+        .digital-rosary-device {
+            text-align: center;
+            background: linear-gradient(135deg, #ffffff, #fdfbf7);
+            padding: 40px 20px;
+            border: 2px solid rgba(197, 160, 89, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(10, 47, 29, 0.05), inset 0 0 20px rgba(197, 160, 89, 0.05);
+        }
+
+        .rosary-clicker-sphere {
+            width: 200px; height: 200px;
+            border: 6px solid var(--primary-deep);
+            box-shadow: 0 0 0 5px var(--accent-gold), 0 15px 35px rgba(10, 47, 29, 0.2), inset 0 0 25px rgba(0,0,0,0.08);
+            border-radius: 50%;
+            margin: 30px auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, #ffffff 30%, #f7f3eb 100%);
+            cursor: pointer;
+            user-select: none;
+            transition: var(--transition-smooth);
+        }
+
+        .rosary-clicker-sphere:active { 
+            transform: scale(0.93); 
+            box-shadow: 0 0 0 3px var(--accent-gold), 0 8px 20px rgba(10, 47, 29, 0.25), inset 0 0 30px rgba(10, 47, 29, 0.1);
+        }
+        .rosary-counter-screen { font-size: 3.8rem; font-weight: 900; color: var(--primary-deep); line-height: 1; }
+        .rosary-label { font-size: 0.9rem; color: var(--accent-gold-dark); font-weight: 800; letter-spacing: 1px; margin-top: 5px; }
+        
+        .rosary-reset-trigger { 
+            color: #b83214; font-size: 0.9rem; font-weight: 700; cursor: pointer; 
+            text-decoration: none; display: inline-block; margin-top: 20px; transition: var(--transition-smooth);
+        }
+        .rosary-reset-trigger:hover { text-decoration: underline; color: #e74c3c; }
+
+        /* تصفيف محرك الأذكار المأثورة الجانبي */
+        .thekr-viewport-container {
+            background: #fdfcf9;
+            padding: 30px;
+            border-right: 5px solid var(--accent-gold);
+            border-left: 1px solid #ebdcb9;
+            border-top: 1px solid #ebdcb9;
+            border-bottom: 1px solid #ebdcb9;
+            min-height: 120px;
+            font-family: 'Amiri', serif;
+            font-size: 1.5rem;
+            text-align: center;
+            color: var(--primary-deep);
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        .thekr-controls-flex { display: flex; gap: 12px; }
+        .thekr-nav-button {
+            flex: 1; background: var(--primary-deep); color: var(--white);
+            border: none; padding: 10px; font-size: 0.9rem; font-weight: 600;
+            cursor: pointer; font-family: 'Cairo', sans-serif; transition: var(--transition-smooth);
+        }
+        .thekr-nav-button:hover { background: var(--primary-light); }
+
+        /* نظام اختيار وتصفح سور القرآن */
+        .quran-engine-selectors {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .selector-wrapper-box { display: flex; flex-direction: column; gap: 10px; }
+        .selector-wrapper-box label { font-size: 0.95rem; font-weight: 700; color: var(--primary-deep); }
+        
+        .portal-dropdown-select {
+            width: 100%; padding: 14px;
+            background: #fafaf8;
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            font-family: 'Cairo', sans-serif;
+            color: var(--primary-deep);
+            font-weight: 600;
+            outline: none;
+            transition: var(--transition-smooth);
+        }
+
+        .audio-player-housing {
+            background: linear-gradient(135deg, var(--primary-deep), var(--primary-light));
+            padding: 25px;
+            border-radius: 4px;
+            border: 1px solid var(--accent-gold);
+        }
+
+        audio { width: 100%; filter: sepia(10%) invert(85%); outline: none; }
+
+        /* ديوان السيرة النبوية والموسوعة النصية الكبرى للأدعية */
+        .heritage-book-container {
+            background: #fffdf9;
+            border: 1px solid #e1d3b0;
+            padding: 40px;
+            box-shadow: inset 0 0 30px rgba(197, 160, 89, 0.05);
+            position: relative;
+        }
+
+        .heritage-book-tabs {
+            display: flex; gap: 12px; overflow-x: auto;
+            padding-bottom: 12px; margin-bottom: 35px;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .book-tab-trigger {
+            background: transparent; color: var(--text-light);
+            border: 1px solid transparent; padding: 10px 20px;
+            font-family: 'Cairo', sans-serif; font-weight: 600;
+            cursor: pointer; white-space: nowrap; transition: var(--transition-smooth);
+        }
+
+        .book-tab-trigger.active {
+            background: #f4eee1;
+            color: var(--primary-deep);
+            border-color: #cbdca5;
+            font-weight: 700;
+            border-bottom: 2px solid var(--accent-gold);
+        }
+
+        .book-live-title-render {
+            font-family: 'Amiri', serif;
+            font-size: 2.3rem;
+            color: var(--primary-deep);
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .book-live-content-render {
+            font-size: 1.25rem;
+            line-height: 2.2;
+            color: #2c3531;
+            text-align: justify;
+        }
+
+        .book-live-content-render p { margin-bottom: 25px; text-indent: 25px; }
+
+        /* كرت مواقيت الصلاة للمدن والمحافظات */
+        .prayer-times-widget {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .prayer-time-item {
+            background: #faf9f5;
+            padding: 16px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: var(--transition-smooth);
+        }
+
+        .prayer-time-item.current-prayer {
+            background: linear-gradient(135deg, var(--primary-deep), var(--primary-light));
+            color: var(--white);
+            border-color: var(--accent-gold);
+            box-shadow: 0 5px 15px rgba(10,47,29,0.15);
+        }
+
+        .prayer-time-item .p-name { font-weight: 700; }
+        .prayer-time-item .p-time { font-weight: 900; font-family: 'Cairo', sans-serif; }
+
+        @media(max-width: 1024px) {
+            .portal-layout-container { grid-template-columns: 1fr; padding: 20px; }
+            .quran-engine-selectors { grid-template-columns: 1fr; }
+            .hero-main-title { font-size: 2.5rem; }
+            .navbar-links { display: none; }
+            .mobile-menu-trigger { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="premium-navbar">
+        <a href="#" class="navbar-brand">المِحْرَابُ الرَّقْمِيُّ</a>
+        <button class="mobile-menu-trigger" onclick="toggleMobileMenuEngine()">القائمة الرئيسية</button>
+        <ul class="navbar-links">
+            <li><a href="#quran-section">المصحف المرتل</a></li>
+            <li><a href="#supplications-section">جامع الأدعية الكبرى</a></li>
+            <li><a href="#biography-section">ديوان السيرة</a></li>
+            <li><a href="#prayer-section">المواقيت الشرعية</a></li>
+            <li><a href="#rosary-section">المسبحة الإلكترونية</a></li>
+        </ul>
+    </nav>
+
+    <ul class="mobile-dropdown-menu" id="mobile-menu-element">
+        <li><a href="#quran-section" onclick="toggleMobileMenuEngine()">المصحف المرتل</a></li>
+        <li><a href="#supplications-section" onclick="toggleMobileMenuEngine()">جامع الأدعية الكبرى</a></li>
+        <li><a href="#biography-section" onclick="toggleMobileMenuEngine()">ديوان السيرة</a></li>
+        <li><a href="#prayer-section" onclick="toggleMobileMenuEngine()">المواقيت الشرعية</a></li>
+        <li><a href="#rosary-section" onclick="toggleMobileMenuEngine()">المسبحة الإلكترونية</a></li>
+    </ul>
+
+    <section class="hero-banner-showcase">
+        <h1 class="hero-main-title">المِنْصَّةُ الإِسْلَامِيَّةُ الرَّقْمِيَّةُ الشَّامِلَةُ</h1>
+        <p class="hero-tagline">موسوعة جامعة متكاملة للقرآن الكريم والسيرة النبوية المطهرة وقصص الخلفاء الراشدين الأربعة — عمل مخلص لوجه الله تعالى</p>
+    </section>
+
+    <div class="live-metadata-bar">
+        <div class="meta-item-box">
+            <span>التاريخ الهجري الحالي: <strong id="hijri-date-string">جاري جلب التاريخ الحقيقي...</strong></span>
+        </div>
+        <div class="meta-item-box">
+            <span>الفريضة القادمة: <strong id="next-prayer-title">...</strong></span>
+            <span>المتبقي لها: <strong id="prayer-countdown-timer">00:00:00</strong></span>
+        </div>
+    </div>
+
+    <div class="portal-layout-container">
+        
+        <main class="primary-portal-column">
+            
+            <div class="feature-card-portal" id="quran-section">
+                <h2 class="section-headline-master">المصحف الصوتي المرتل الجامع</h2>
+                
+                <div class="quran-engine-selectors">
+                    <div class="selector-wrapper-box">
+                        <label for="quran-reader-select">اختيار فضيلة القارئ الجليل</label>
+                        <select id="quran-reader-select" class="portal-dropdown-select" onchange="synchronizeQuranAudioEngine()">
+                            <option value="https://server8.mp3quran.net/afs/">فضيلة الشيخ مشاري بن راشد العفاسي</option>
+                            <option value="https://server7.mp3quran.net/basit_mjwd/">فضيلة الشيخ عبد الباسط عبد الصمد (المجود)</option>
+                            <option value="https://server11.mp3quran.net/yasser/">فضيلة الشيخ ياسر الدوسري</option>
+                            <option value="https://server12.mp3quran.net/maher/">فضيلة الشيخ ماهر المعيقلي</option>
+                            <option value="https://server7.mp3quran.net/s_gmd/">فضيلة الشيخ سعد الغامدي</option>
+                        </select>
+                    </div>
+                    <div class="selector-wrapper-box">
+                        <label for="quran-surah-select">السورة الشريفة المراد استماعها (114 سورة كاملة)</label>
+                        <select id="quran-surah-select" class="portal-dropdown-select" onchange="synchronizeQuranAudioEngine()">
+                            </select>
+                    </div>
+                </div>
+
+                <div class="audio-player-housing">
+                    <audio id="portal-audio-playback" controls controlsList="nodownload">
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+            <div class="feature-card-portal" id="supplications-section">
+                <h2 class="section-headline-master">الموسوعة الكبرى للأدعية المأثورة والمناجاة</h2>
+                <div class="heritage-book-container">
+                    <div class="heritage-book-tabs" id="supplications-tabs-navigation">
+                        </div>
+                    <div class="heritage-book-viewport">
+                        <h3 class="book-live-title-render" id="supplication-title-display">جاري تجهيز الأبواب...</h3>
+                        <div class="book-live-content-render" id="supplication-content-display">
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-card-portal" id="biography-section">
+                <h2 class="section-headline-master">ديوان السيرة النبوية وتاريخ الأصحاب الكرام</h2>
+                
+                <div class="heritage-book-container">
+                    <div class="heritage-book-tabs" id="heritage-book-navigation">
+                        </div>
+                    <div class="heritage-book-viewport">
+                        <h3 class="book-live-title-render" id="book-title-display">جاري استحضار المتون والتوثيقات...</h3>
+                        <div class="book-live-content-render" id="book-content-display">
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+        <aside class="sidebar-portal-column">
+            
+            <div class="feature-card-portal" id="prayer-section">
+                <h2 class="section-headline-master">المواقيت الشرعية للصلاة</h2>
+                <div class="prayer-times-widget">
+                    <div class="prayer-time-item" id="p-fajr">
+                        <span class="p-name">الفجر</span>
+                        <span class="p-time">04:15 ص</span>
+                    </div>
+                    <div class="prayer-time-item" id="p-dhuhr">
+                        <span class="p-name">الظهر</span>
+                        <span class="p-time">12:04 م</span>
+                    </div>
+                    <div class="prayer-time-item" id="p-asr">
+                        <span class="p-name">العصر</span>
+                        <span class="p-time">03:32 م</span>
+                    </div>
+                    <div class="prayer-time-item" id="p-maghrib">
+                        <span class="p-name">المغرب</span>
+                        <span class="p-time">06:48 م</span>
+                    </div>
+                    <div class="prayer-time-item" id="p-isha">
+                        <span class="p-name">العشاء</span>
+                        <span class="p-time">08:18 م</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-card-portal" id="rosary-section">
+                <h2 class="section-headline-master">المسبحة الإلكترونية المضيئة</h2>
+                <div class="digital-rosary-device">
+                    <p style="font-size: 0.85rem; color: var(--text-light); font-weight: 600;">اضغط داخل الدائرة للتسبيح</p>
+                    <div class="rosary-clicker-sphere" onclick="triggerRosaryIncrementEngine()">
+                        <span class="rosary-counter-screen" id="rosary-screen-render">0</span>
+                        <span class="rosary-label">تَسْبِيحَة</span>
+                    </div>
+                    <span class="rosary-reset-trigger" onclick="triggerRosaryResetEngine()">إعادة تصفير العداد</span>
+                </div>
+            </div>
+
+            <div class="feature-card-portal">
+                <h2 class="section-headline-master">رياض الأذكار</h2>
+                <div class="thekr-viewport-container" id="thekr-portal-render">
+                    جاري جلب الذكر المبارك...
+                </div>
+                <div class="thekr-controls-flex">
+                    <button class="thekr-nav-button" onclick="navigateThekrEngine(-1)">الذكر السابق</button>
+                    <button class="thekr-nav-button" onclick="navigateThekrEngine(1)">الذكر التالي</button>
+                </div>
+            </div>
+
+        </aside>
+    </div>
+
+    <script>
+        const databaseSurahArray = [
+            "الفاتحة", "البقرة", "آل عمران", "النساء", "المائدة", "الأنعام", "الأعراف", "الأنفال", "التوبة", "يونس",
+            "هود", "يوسف", "الرعد", "إبراهيم", "الحجر", "النحل", "الإسراء", "الكهف", "مريم", "طه",
+            "الأنبياء", "الحج", "المؤمنون", "النور", "الفرقان", "الشعراء", "النمل", "القصص", "العنكبوت", "الروم",
+            "لقمان", "السجدة", "الأحزاب", "سبأ", "فاطر", "يس", "الصافات", "ص", "الزمر", "غافر",
+            "فصلت", "الشورى", "الزخرف", "الدخان", "الجاثية", "الأحقاف", "محمد", "الفتح", "الحجرات", "ق",
+            "الذاريات", "الطور", "النجم", "القمر", "الرحمن", "الواقعة", "الحديد", "المجادلة", "الحشر", "الممتحنة",
+            "الصف", "الجمعة", "المنافقون", "التغابن", "الطلاق", "التحريم", "الملك", "القلم", "الحاقة", "المعارج",
+            "نوح", "الجن", "المزمل", "المدثر", "القيامة", "الإنسان", "المرسلات", "النبأ", "النازعات", "عبس",
+            "التكوير", "الانفطار", "المطففين", "الانشقاق", "البروج", "الطارق", "الأعلى", "الغاشية", "الفجر", "البلد",
+            "الشمس", "الليل", "الضحى", "الشرح", "التين", "العلق", "القدر", "البينة", "الزلزلة", "العاديات",
+            "القارعة", "التكاثر", "العصر", "الهمزة", "الفيل", "قريش", "الماعون", "الكوثر", "الكافرون", "النصر",
+            "المسد", "الإخلاص", "الفلق", "الناس"
+        ];
+
+        // مصفوفة الموسوعة الكبرى للأدعية الطويلة المنوعة (جثة كاملة ضخمة للأدعية)
+        const databaseMegaSupplications = [
+            {
+                tabName: "أدعية قرآنية شريفة",
+                title: "الدعاء المستجاب من كتاب الله الكريم",
+                content: `<p>• "رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ" [البقرة: 201]. وهو أجمع دعاء لخيري الدنيا والآخرة.</p>
+                          <p>• "رَبَّنَا لَا تُزِغْ قُلُوبَنَا بَعْدَ إِذْ هَدَيْتَنَا وَهَبْ لَنَا مِنْ لَدُنْكَ رَحْمَةً إِنَّكَ أَنْتَ الْوَهَّابُ" [آل عمران: 8].</p>
+                          <p>• "رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِنْ ذُرِّيَّتِي رَبَّنَا وَتَقَبَّلْ دُعَاءِ * رَبَّنَا اغْفِرْ لِي وَلِوَالِدَيَّ وَلِلْمُؤْمِنِينَ يَوْمَ يَقُومُ الْحِسَابُ" [إبراهيم: 40-41].</p>
+                          <p>• "رَبِّ اشْرَحْ لِي صَدْرِي * وَيَسِّرْ لِي أَمْرِي * وَاحْلُلْ عُقْدَةً مِنْ لِسَانِي * يَفْقَهُوا قَوْلِي" [طه: 25-28].</p>`
+            },
+            {
+                tabName: "أدعية نبوية مأثورة",
+                title: "الأدعية الجامعة من السنة النبوية المطهرة",
+                content: `<p>• عن شداد بن أوس رضي الله عنه عن النبي صلى الله عليه وسلم أنه قال: "سَيِّدُ الاِسْتِغْفَارِ أَنْ تَقُولَ: اللَّهُمَّ أَنْتَ رَبِّي لاَ إِلَهَ إِلاَّ أَنْتَ، خَلَقْتَنِي وَأَنَا عَبْدُكَ، وَأَنَا عَلَى عَهْدِكَ وَوَعْدِكَ مَا اسْتَطَعْتُ، أَعُوذُ بِكَ مِنْ شَرِّ مَا صَنَعْتُ، أَبُوءُ لَكَ بِنِعْمَتِكَ عَلَيَّ، وَأَبُوءُ لَكَ بِذَنْبِي فَاغْفِرْ لِي، فَإِنَّهُ لاَ يَغْفِرُ الذُّنُوبَ إِلاَّ أَنْتَ".</p>
+                          <p>• "اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْبُخْلِ وَالْجُبْنِ، وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ".</p>
+                          <p>• "اللَّهُمَّ إنِّي أَسْأَلُكَ العَفْوَ وَالعَافِيَةَ فِي الدُّنْيَا وَالآخِرَةِ، اللَّهُمَّ إنِّي أَسْأَلُكَ العَفْوَ وَالعَافِيَةَ فِي دِينِي وَدُنْيَايَ وَأَهْلِي وَمَالِي".</p>`
+            },
+            {
+                tabName: "أدعية الشفاء والفرج"
+                title: "أدعية لرفع البلاء وتفريج الكروب والشفاء من الأسقام",
+                content: `<p>• دُعَاءُ ذِي النُّونِ فِي بَطْنِ الحُوتِ: "لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ"، فإنه لم يدعُ بها رجل مسلم في شيء قط إلا استجاب الله له.</p>
+                          <p>• دُعَاءُ أَيُّوبَ عَلَيْهِ السَّلَامُ: "رَبِّ أَنِّي مَسَّنِيَ الضُّرُّ وَأَنْتَ أَرْحَمُ الرَّاحِمِينَ".</p>
+                          <p>• "أَذْهِبِ الْبَاسَ رَبَّ النَّاسِ، وَاشْفِ أَنْتَ الشَّافِي، لَا شِفَاءَ إِلَّا شِفَاؤُكَ، شِفَاءً لَا يُغَادِرُ سَقَمًا".</p>
+                          <p>• "اللَّهُمَّ رَحْمَتَكَ أَرْجُو فَلَا تَكِلْنِي إِلَى نَفْسِي طَرْفَةَ عَيْنٍ، وَأَصْلِحْ لِي شَأْنِي كُلَّهُ لَا إِلَهَ إِلَّا أَنْتَ".</p>`
+            }
+        ];
+
+        const databaseBiographyAndCompanions = [
+            {
+                tabName: "المولد والنسب الشريف",
+                title: "السيرة النبوية: النسب الطاهر والمولد النبوي المبارك",
+                content: `<p>هو سيد الأولين والآخرين أبو القاسم محمد بن عبد الله بن عبد المطلب بن هاشم بن عبد مناف بن قُصي بن كلاب بن مرة بن كعب بن لؤي بن غالب بن فهر بن مالك بن النضر بن كنانة بن خزيمة بن مدركة بن إلياس بن مضر بن نزار بن معد بن عدنان. ويتصل نسب عدنان مباشرة بنبي الله إسماعيل بن إبراهيم عليهما السلام.</p>
+                          <p>ولد الحبيب المصطفى صلى الله عليه وسلم في مكة المكرمة في شعب بني هاشم صبيحة يوم الاثنين الثاني عشر من شهر ربيع الأول من عام الفيل، ولد النبي يتيم الأب، حيث مات والده عبد الله وهو جنين في بطن أمه، فاستبشر به جده عبد المطلب وسماه محمداً.</p>`
+            },
+            {
+                tabName: "بدء الوحي والبعثة",
+                title: "نزول الوحي الخالد وانطلاق الرسالة الإسلامية المباركة",
+                content: `<p>لما بلغ النبي صلى الله عليه وسلم سن الأربعين، حُبب إليه الخلوة والعبادة والابتعاد عن باطل الجاهلية، فكان يخلو بنفسه في غار حراء بجبل النور يتعبد الليالي ذوات العدد ويتفكر في خلق السماوات والأرض. وفي شهر رمضان المبارك، نزل عليه الملك جبريل عليه السلام بالوحي الإلهي لأول مرة.</p>
+                          <p>ضمه جبريل بقوة وقال له: اقرأ، فقال النبي: ما أنا بقارئ، وكررها ثلاثاً ثم قال الملك: "اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ * خَلَقَ الْإِنْسَانَ مِنْ عَلَقٍ". عاد النبي يرتجف فزعاً وخوفاً إلى زوجته خديجة بنت خويلد فقالت له: "كلا والله لا يخزيك الله أبداً".</p>`
+            },
+            {
+                tabName: "سيرة أبي بكر وعمر",
+                title: "سيرة الصديق والفاروق رضي الله عنهما",
+                content: `<p>سيدنا أبو بكر الصديق: هو أول من أسلم من الرجال، ورفيق النبي في الغار، تولى الخلافة الأولى وقاد حروب الردة وجمع القرآن الكريم حمايةً للدين من الضياع بعد استشهاد الحفظة.</p>
+                          <p>سيدنا عمر بن الخطاب: أمير المؤمنين الفاروق العادل، شهد عهده فتوحات معجزة أسقطت عروش كسرى وقيصر وفُتحت في عهده القدس ومصر، وهو من وضع التاريخ الهجري المبارك.</p>`
+            }
+        ];
+
+        const databaseAuthenticThekr = [
+            "سُبْحَانَ اللَّهِ وَبِحَمْدِهِ ، سُبْحَانَ اللَّهِ الْعَظِيمِ",
+            "أَسْتَغْفِرُ اللَّهَ الْعَظِيمَ الَّذِي لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ وَأَتُوبُ إِلَيْهِ",
+            "لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ",
+            "اللَّهُمَّ صَلِّ وَسَلِّمْ وَبَارِكْ عَلَى نَبِيِّنَا مُحَمَّدٍ وَعَلَى آلِهِ وَصَحْبِهِ أَجْمَعِينَ",
+            "لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ الْعَلِيِّ الْعَظِيمِ"
+        ];
+
+        let liveThekrPointer = 0;
+        let liveRosaryCounter = 0;
+
+        // مواقيت الصلاة الثابتة لعمل العداد الحقيقي التنازلي بدقة
+        const prayerTimesConfig = [
+            { name: "الفجر", time: "04:15" },
+            { name: "الظهر", time: "12:04" },
+            { name: "العصر", time: "15:32" },
+            { name: "المغرب", time: "18:48" },
+            { name: "العشاء", time: "20:18" }
+        ];
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const surahDropdown = document.getElementById('quran-surah-select');
+            databaseSurahArray.forEach((name, index) => {
+                const surahNum = String(index + 1).padStart(3, '0');
+                const opt = document.createElement('option');
+                opt.value = surahNum;
+                opt.innerText = `${surahNum} — سورة ${name}`;
+                surahDropdown.appendChild(opt);
+            });
+
+            synchronizeQuranAudioEngine();
+            initializeHeritageBookTabs();
+            initializeMegaSupplicationTabs();
+            renderLiveThekrContent();
+
+            // تشغيل التاريخ الهجري الحقيقي فوراً من جهاز المستخدم
+            const options = { calendar: 'islamic', day: 'numeric', month: 'long', year: 'numeric' };
+            document.getElementById('hijri-date-string').innerText = new Intl.DateTimeFormat('ar-TN-u-ca-islamic', options).format(new Date());
+
+            // تشغيل محرك حساب العداد التنازلي للصلاة التفاعلي الحقيقي وتحديثه كل ثانية
+            executePrayerTimerEngine();
+            setInterval(executePrayerTimerEngine, 1000);
+        });
+
+        // محرك العداد التنازلي حقيقي للصلاة
+        function executePrayerTimerEngine() {
+            const now = new Date();
+            const currentSeconds = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+            
+            let nextPrayer = null;
+            let targetSeconds = 0;
+
+            for (let i = 0; i < prayerTimesConfig.length; i++) {
+                const parts = prayerTimesConfig[i].time.split(':');
+                const pSeconds = parseInt(parts[0]) * 3600 + parseInt(parts[1]) * 60;
+                if (pSeconds > currentSeconds) {
+                    nextPrayer = prayerTimesConfig[i];
+                    targetSeconds = pSeconds;
+                    break;
+                }
+            }
+
+            // إذا انتهت صلوات اليوم، الفريضة القادمة هي الفجر لليوم التالي
+            if (!nextPrayer) {
+                nextPrayer = prayerTimesConfig[0];
+                const parts = prayerTimesConfig[0].time.split(':');
+                targetSeconds = (parseInt(parts[0]) * 3600 + parseInt(parts[1]) * 60) + 86400;
+            }
+
+            const diffSeconds = targetSeconds - currentSeconds;
+            const hrs = String(Math.floor(diffSeconds / 3600)).padStart(2, '0');
+            const mins = String(Math.floor((diffSeconds % 3600) / 60)).padStart(2, '0');
+            const secs = String(diffSeconds % 60).padStart(2, '0');
+
+            document.getElementById('next-prayer-title').innerText = nextPrayer.name;
+            document.getElementById('prayer-countdown-timer').innerText = `${hrs}:${mins}:${secs}`;
+
+            // تلوين الصلاة النشطة القادمة في الجدول الجانبي بصرياً
+            document.querySelectorAll('.prayer-time-item').forEach(item => item.classList.remove('current-prayer'));
+            if(nextPrayer.name === "الفجر") document.getElementById('p-fajr').classList.add('current-prayer');
+            if(nextPrayer.name === "الظهر") document.getElementById('p-dhuhr').classList.add('current-prayer');
+            if(nextPrayer.name === "العصر") document.getElementById('p-asr').classList.add('current-prayer');
+            if(nextPrayer.name === "المغرب") document.getElementById('p-maghrib').classList.add('current-prayer');
+            if(nextPrayer.name === "العشاء") document.getElementById('p-isha').classList.add('current-prayer');
+        }
+
+        function toggleMobileMenuEngine() {
+            document.getElementById('mobile-menu-element').classList.toggle('active');
+        }
+
+        function synchronizeQuranAudioEngine() {
+            const baseUrl = document.getElementById('quran-reader-select').value;
+            const surahCode = document.getElementById('quran-surah-select').value;
+            document.getElementById('portal-audio-playback').src = `${baseUrl}${surahCode}.mp3`;
+            document.getElementById('portal-audio-playback').load();
+        }
+
+        function initializeHeritageBookTabs() {
+            const navGroup = document.getElementById('heritage-book-navigation');
+            databaseBiographyAndCompanions.forEach((item, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `book-tab-trigger ${idx === 0 ? 'active' : ''}`;
+                btn.innerText = item.tabName;
+                btn.onclick = () => {
+                    document.querySelectorAll('#heritage-book-navigation .book-tab-trigger').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    document.getElementById('book-title-display').innerText = item.title;
+                    document.getElementById('book-content-display').innerHTML = item.content;
+                };
+                navGroup.appendChild(btn);
+            });
+            document.getElementById('book-title-display').innerText = databaseBiographyAndCompanions[0].title;
+            document.getElementById('book-content-display').innerHTML = databaseBiographyAndCompanions[0].content;
+        }
+
+        // إعداد تبويبات جثة الأدعية الكبرى الضخمة
+        function initializeMegaSupplicationTabs() {
+            const suppNavGroup = document.getElementById('supplications-tabs-navigation');
+            databaseMegaSupplications.forEach((item, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `book-tab-trigger ${idx === 0 ? 'active' : ''}`;
+                btn.innerText = item.tabName;
+                btn.onclick = () => {
+                    document.querySelectorAll('#supplications-tabs-navigation .book-tab-trigger').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    document.getElementById('supplication-title-display').innerText = item.title;
+                    document.getElementById('supplication-content-display').innerHTML = item.content;
+                };
+                suppNavGroup.appendChild(btn);
+            });
+            document.getElementById('supplication-title-display').innerText = databaseMegaSupplications[0].title;
+            document.getElementById('supplication-content-display').innerHTML = databaseMegaSupplications[0].content;
+        }
+
+        function triggerRosaryIncrementEngine() {
+            liveRosaryCounter++;
+            document.getElementById('rosary-screen-render').innerText = liveRosaryCounter;
+        }
+
+        function triggerRosaryResetEngine() {
+            liveRosaryCounter = 0;
+            document.getElementById('rosary-screen-render').innerText = liveRosaryCounter;
+        }
+
+        function renderLiveThekrContent() {
+            document.getElementById('thekr-portal-render').innerText = databaseAuthenticThekr[liveThekrPointer];
+        }
+
+        function navigateThekrEngine(offset) {
+            liveThekrPointer += offset;
+            if (liveThekrPointer >= databaseAuthenticThekr.length) liveThekrPointer = 0;
+            if (liveThekrPointer < 0) liveThekrPointer = databaseAuthenticThekr.length - 1;
+            renderLiveThekrContent();
+        }
+    </script>
+</body>
+</html>
